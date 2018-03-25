@@ -19,7 +19,7 @@ To run the docker for this project, you need to follow the steps:
 
         $ mkdir <project-name>-<version>
         $ cd <project-name>-<version>
-        $ git clone https://<gituser>@bitbucket.org/<company-name>/<project-name>-<version>.git simce
+        $ git clone https://<gituser>@bitbucket.org/<company-name>/<project-name>-<version>.git crm
         $ git clone https://<gituser>@bitbucket.org/<company-name>/<project-name>-docker.git docker
         
 Expected result:
@@ -82,7 +82,7 @@ Expected result:
 ***
 
 + Access:
-     * SiMCE: http://localhost:10080/
+     * CRM: http://localhost:10080/
      + MySql:
           * host: 127.0.0.1
           * user: <myproject>
@@ -110,7 +110,7 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
 
         $ mkdir <project-name>-<version>
         $ cd <project-name>-<version>
-        $ git clone https://<gituser>@bitbucket.org/<company-name>/<project-name>-<version>.git simce
+        $ git clone https://<gituser>@bitbucket.org/<company-name>/<project-name>-<version>.git crm
         $ git clone https://<gituser>@bitbucket.org/<company-name>/<project-name>-docker.git docker
 
 Resultado esperado:
@@ -171,7 +171,7 @@ Resultado esperado:
 ***
 
 + Acessos:
-     * SiMCE: http://localhost:10080/
+     * CRM: http://localhost:10080/
      + MySql:
           * host: 127.0.0.1
           * user: <myproject>
