@@ -24,50 +24,56 @@ To run the docker for this project, you need to follow the steps:
         
 Expected result:
 
-        <project-name>-<version>
-         ├── <project-name>
-         │  └── <project-name> Structure
-         └── docker
+        <version>
+          |-- <project-name>
+          |   |-- <project-name> Structure
+          |-- bundle-services
+          |   |-- Other Services Structure
+          |-- docker
 
 ***
 
 * After downloading everything the structure of the project should be:
 
-        <project-name>-<version>
-         ├── <project-name>
-         │  └── <project-name> Structure
-         └── docker
-            ├── build
-            │   ├── centos6.9
-            │   │   ├── Dockerfile
-            │   │   ├── packages
-            │   │   ├── repos.d
-            │   │   └── scripts
-            │   │       └── init.sh
-            │   ├── httpd
-            │   │   ├── Dockerfile
-            │   │   ├── configs
-            │   │   │   └── httpd.conf
-            │   │   └── scripts
-            │   │       └── info.php
-            │   ├── mysql
-            │   │   ├── Dockerfile
-            │   │   └── scripts
-            │   │       └── init.sh
-            │   ├── nginx
-            │   │   ├── Dockerfile
-            │   │   └── scripts
-            │   │       └── init.sh
-            │   ├── nodejs
-            │   │   ├── Dockerfile
-            │   │   └── scripts
-            │   │       └── init.sh
-            │   └── redis
-            │       ├── Dockerfile
-            │       └── scripts
-            │           └── init.sh
-            ├── docker-compose.yml
-            └── exec.sh
+        <version>
+          |-- <project-name>
+          |   |-- <project-name> Structure
+          |-- bundle-services
+          |   |-- Other Services Structure
+          |-- docker
+          |   |-- build
+          |   |   |-- centos6.9
+          |   |   |   |-- packages
+          |   |   |   |   |-- Structure Packages
+          |   |   |   |-- repos.d
+          |   |   |   |   |-- Structure Repositories
+          |   |   |   |-- scripts
+          |   |   |   |   |-- init.sh
+          |   |   |   └-- Dockerfile
+          |   |   |-- httpd
+          |   |   |   |-- configs
+          |   |   |   |   |-- httpd.conf
+          |   |   |   |-- scripts
+          |   |   |   |   |-- info.php
+          |   |   |   └-- Dockerfile
+          |   |   |-- mysql
+          |   |   |   |-- scripts
+          |   |   |   |   |-- init.sh
+          |   |   |   └-- Dockerfile
+          |   |   |-- nginx
+          |   |   |   |-- scripts
+          |   |   |   |   |-- init.sh
+          |   |   |   └-- Dockerfile
+          |   |   |-- nodejs
+          |   |   |   |-- scripts
+          |   |   |   |   |-- init.sh
+          |   |   |   └-- Dockerfile
+          |   |   |-- redis
+          |   |   |   |-- scripts
+          |   |   |   |   |-- init.sh
+          |   |   |   └-- Dockerfile
+          |   └-- docker-compose.yml
+          |   └-- exec.sh
 
 ***
 
@@ -105,60 +111,66 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
 
 ***
 
-- Renomeie <project-name>-<version> para usar o nome do seu projeto específico
+- Renomeie <nome-projeto>-<versao> para usar o nome do seu projeto específico
 - Criar a estrutura do projeto, cuidado para que cada item seja um projeto diferente:
 
-        $ mkdir <project-name>-<version>
-        $ cd <project-name>-<version>
-        $ git clone https://<gituser>@bitbucket.org/<company-name>/<project-name>-<version>.git crm
-        $ git clone https://<gituser>@bitbucket.org/<company-name>/<project-name>-docker.git docker
+        $ mkdir <nome-projeto>-<versao>
+        $ cd <nome-projeto>-<versao>
+        $ git clone https://<usuariogit>@bitbucket.org/<nome-empresa>/<nome-projeto>-<versao>.git crm
+        $ git clone https://<usuariogit>@bitbucket.org/<nome-empresa>/<nome-projeto>-docker.git docker
 
 Resultado esperado:
 
-        <project-name>-<version>
-         ├── <project-name>
-         │  └── <project-name> Structure
-         └── docker
+        <versao>
+          |-- <nome-projeto>
+          |   |-- Estrutura do projeto
+          |-- bundle-services
+          |   |-- Estrutura dos serviços externos
+          |-- docker
 
 ***
 
 * Depois de baixar tudo a estrutura do projeto deve ficar:
 
-        <project-name>-<version>
-         ├── <project-name>
-         │  └── <project-name> Structure
-         └── docker
-            ├── build
-            │   ├── centos6.9
-            │   │   ├── Dockerfile
-            │   │   ├── packages
-            │   │   ├── repos.d
-            │   │   └── scripts
-            │   │       └── init.sh
-            │   ├── httpd
-            │   │   ├── Dockerfile
-            │   │   ├── configs
-            │   │   │   └── httpd.conf
-            │   │   └── scripts
-            │   │       └── info.php
-            │   ├── mysql
-            │   │   ├── Dockerfile
-            │   │   └── scripts
-            │   │       └── init.sh
-            │   ├── nginx
-            │   │   ├── Dockerfile
-            │   │   └── scripts
-            │   │       └── init.sh
-            │   ├── nodejs
-            │   │   ├── Dockerfile
-            │   │   └── scripts
-            │   │       └── init.sh
-            │   └── redis
-            │       ├── Dockerfile
-            │       └── scripts
-            │           └── init.sh
-            ├── docker-compose.yml
-            └── exec.sh
+        <versao>
+          |-- <nome-projeto>
+          |   |-- Estrutura do projeto
+          |-- bundle-services
+          |   |-- Estrutura dos serviços externos
+          |-- docker
+          |   |-- build
+          |   |   |-- centos6.9
+          |   |   |   |-- packages
+          |   |   |   |   |-- Estrutura dos pacotes do centos
+          |   |   |   |-- repos.d
+          |   |   |   |   |-- Estrutura dos repositórios do centos
+          |   |   |   |-- scripts
+          |   |   |   |   |-- init.sh
+          |   |   |   └-- Dockerfile
+          |   |   |-- httpd
+          |   |   |   |-- configs
+          |   |   |   |   |-- httpd.conf
+          |   |   |   |-- scripts
+          |   |   |   |   |-- info.php
+          |   |   |   └-- Dockerfile
+          |   |   |-- mysql
+          |   |   |   |-- scripts
+          |   |   |   |   |-- init.sh
+          |   |   |   └-- Dockerfile
+          |   |   |-- nginx
+          |   |   |   |-- scripts
+          |   |   |   |   |-- init.sh
+          |   |   |   └-- Dockerfile
+          |   |   |-- nodejs
+          |   |   |   |-- scripts
+          |   |   |   |   |-- init.sh
+          |   |   |   └-- Dockerfile
+          |   |   |-- redis
+          |   |   |   |-- scripts
+          |   |   |   |   |-- init.sh
+          |   |   |   └-- Dockerfile
+          |   └-- docker-compose.yml
+          |   └-- exec.sh
 
 ***
 
@@ -166,7 +178,7 @@ Resultado esperado:
 
         $ cd docker
         $ docker-compose up -d --build
-        $ docker exec -it <mycontainer> bash
+        $ docker exec -it <meucontainer> bash
 
 ***
 
@@ -174,7 +186,7 @@ Resultado esperado:
      * CRM: http://localhost:10080/
      + MySql:
           * host: 127.0.0.1
-          * user: <myproject>
+          * user: <meuprojeto>
           * senha: secret
-          * base: <myproject>
+          * base: <meuprojeto>
           * porta: 13306

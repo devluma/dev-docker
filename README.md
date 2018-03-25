@@ -37,8 +37,8 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
 
 * Para iniciar os projetos:
 
-        $ sh start.sh <dir-company> <git-user-project> <dir-project-name> <project-version> <local or product>
-        $ sudo chown -R $USER. <dir-company>/<dir-project-name>/<files*>
-        $ vim <dir-company>/<dir-project-name>/.env
+        $ sh start.sh <pasta-empresa> <usuario-git-projeto> <pasta-nome-projeto> <projeto-versao> <local ou producao>
+        $ sudo chown -R $USER. <pasta-empresa>/<pasta-nome-projeto>/<arquivos*>
+        $ vim <pasta-empresa>/<pasta-nome-projeto>/.env
 
 ***
