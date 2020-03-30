@@ -1,80 +1,52 @@
+# Sysdomotic
+* Docker
+* Project building
+* Timezone UTC (PHP, MySql, HTTPD, ... and OS)
 
-# Environment with docker containers and file with setting environment variables.
-PHP 7.3.10-fpm
-Nginx 1.17.4
-PostgreSQL 11.5
-MariaDB 10.4
-NodeJS 13
-Redis 6.0-rc
+## Documentation to create a development environment or production projects
+ 
+To run the docker for this project, you need to follow the steps:
+ 
++ Install docker and docker-compose:
+     * [For Mac](https://www.docker.com/docker-mac)
+     * [For Windows](https://www.docker.com/docker-windows)
+     * For Ubuntu `$ sudo apt-get install -y docker.io docker-compose`
+     * You can add hosts and configs in the Virtualbox
 
-# Setting Container Nginx
- -> Expose ports:80, 8081, 3000 e 443
+         WINDOWS:
+         ![Screenshot](conf-docker-virtualbox-windows.png)
 
- -> Volumes (Obs: check in docker settings, if the drivers are shared): Aplicação:htdocs -> /var/www/html; Logs:nginx/logs -> /var/log/nginx; Virtual Host: nginx/sites -> /etc/nginx/conf.d
-	
- -> Virtual Host: You can create a vhost like http://localhost / http://static.local / http://web.local / http://api.local 
+***
 
-# PHP container configuration
- -> Expose ports: 9000
+* To start the projects:
 
- -> Volume (Obs: check in docker settings, if the drivers are shared): Aplicação: htdocs -> /var/www/html
-	
- -> Libraries: You can abble the php libraries in the settings file. Ex: MBSTRING, GD, MCRYPT, PDO_MYSQL, etc.
-	
-# PostgreSQL container configuration
- -> Expose ports: 5432
+        $ sh start.sh <dir-company> <git-user-project> <dir-project-name> <project-version> <local or product>
+        $ sudo chown -R $USER. <dir-company>/<dir-project-name>/<files*>
+        $ vim <dir-company>/<dir-project-name>/.env
 
- -> Volume (Obs: check in docker settings, if the drivers are shared): Aplicação: postgresql/data -> /var/lib/postgresql/data
+***
 
- -> Connection settings: POSTGRES_DB = db_test; POSTGRES_USER = user_test; POSTGRES_PASSWORD = user_secret; POSTGRES_PORT = 5432;
+# Tradução
+ 
+## Documentação para criar ambiente de desenvolvimento e produção dos projetos
 
-# MariaDB container configuration
+Para executar o docker para este projeto, vocÃª precisa seguir as etapas:
 
-# NodeJS container configuration
++ Instalar docker e docker-compose:
+     * [Para Mac](https://www.docker.com/docker-mac)
+     * [Para Windows](https://www.docker.com/docker-windows)
+     * Para Ubuntu $sudo apt-get install -y docker.io docker-compose
+     * Adicione os hosts e configurações no Virtualbox
 
-# How use
+         WINDOWS:
+         ![Screenshot](conf-docker-virtualbox-windows.png)
 
--> Clone the repo:
+***
 
-   git clone 
+* Para iniciar os projetos:
 
--> Inside the folder "docker-php-nodejs-nginx-postgresql-mariadb-redis" copy the file "env-example" and rename to ".env"
+        $ sh start.sh <dir-company> <git-user-project> <dir-project-name> <project-version> <local or product>
+        $ sudo chown -R $USER. <dir-company>/<dir-project-name>/<files*>
+        $ vim <dir-company>/<dir-project-name>/.env
 
-   cp .env-example .env
-
--> Start the container:
-
-   docker-compose up -d
-
--> You can add the domains in the hosts file
-
-   127.0.0.1 localhost
-
-   127.0.0.1 api.local
-
-   127.0.0.1 static.local
-
--> You can add hosts and configs in the Virtualbox
-
-   WINDOWS:
-   ![Screenshot](conf-docker-virtualbox-windows.png)
-
--> Access the container shell:
-    
-	Nginx: $ docker exec -it nginx bash
-    WINDOWS: winpty docker exec -it nginx bash
-
-	PHP: $ docker exec -it php-fpm bash
-	WINDOWS: winpty docker exec -it php-fpm bash
-
-	PostgreSQL: $ docker exec -it postgresql bash
-    WINDOWS: winpty docker exec -it postgresql bash
-	
--> Open in the browser
-
-   http://<HOST> or http://<HOST>:<PORT>
-
--> Access the database inside the container PostgreSQL
-
-	psql dbname username
-	
+***
