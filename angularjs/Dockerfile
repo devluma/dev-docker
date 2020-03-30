@@ -1,4 +1,4 @@
-FROM node:10-alpine as node
+FROM node:13-alpine as node
 
 LABEL Sysdomotic <sysdomotic@gmail.com>
 
