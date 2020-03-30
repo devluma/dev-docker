@@ -4,4 +4,4 @@ LABEL Sysdomotic <sysdomotic@gmail.com>
 
 WORKDIR /var/www/html
 
-EXPOSE 80 443
+EXPOSE 80 8081 443

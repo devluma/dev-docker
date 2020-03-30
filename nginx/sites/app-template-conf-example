@@ -1,10 +1,11 @@
 server {
     listen 80;
 
-    server_name app.sysdomotic.com.br;
-
     root /var/www/html/app/public/;
-    index index.html index.htm index.php;
+    index index.htm index.html;
+
+	# Acesse o site por from http://app.local/
+	server_name app.local;
 
     charset utf-8;
 
@@ -25,7 +26,7 @@ server {
     location = /robots.txt  { access_log off; log_not_found off; }
 
     access_log off;
-    error_log  /var/log/nginx/app.sysdomotic.com.br.log error;
+    error_log  /var/log/nginx/app.local.log error;
 
     sendfile off;
 

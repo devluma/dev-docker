@@ -1,12 +1,14 @@
 server {
-	root /var/www/html/api/public/;
-	index index.php index.html index.htm;
+    listen 8081;
 
-	# Acesse o site por from http://api.sysdomotic.com.br/
-	server_name api.sysdomotic.com.br;
+	root /var/www/html/api/public/;
+	index index.htm index.html index.php;
+
+	# Acesse o site por from http://api.local/
+	server_name api.local;
 
 	location / {
-         try_files $uri $uri/ /index.php$is_args$args;
+        try_files $uri $uri/ /index.php$is_args$args;
     }
 
 	location ~ \.php$ {
