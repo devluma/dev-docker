@@ -16,6 +16,9 @@ To run the docker for this project, you need to follow the steps:
          WINDOWS:
          ![Screenshot](conf-docker-virtualbox-windows.png)
 
++ Elastic Stack (ELK) on Docker
+     * [https://github.com/deviantony/docker-elk]
+
 ***
 
 * To start the projects:
@@ -40,6 +43,9 @@ Para executar o docker para este projeto, vocÃª precisa seguir as etapas:
 
          WINDOWS:
          ![Screenshot](conf-docker-virtualbox-windows.png)
+
++ Pacotes do Elastic (ELK) no Docker
+     * [https://github.com/deviantony/docker-elk]
 
 ***
 
