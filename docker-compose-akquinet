@@ -11,11 +11,12 @@ services:
             - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
             - ${NGINX_SITES_PATH}:/etc/nginx/conf.d
         ports:
-            - "${NGINX_HOST_HTTP_PORT}:80"
+            - "${NGINX_HOST_HTTP_APP_PORT}:80"
+            - "${NGINX_HOST_HTTP_API_PORT}:8081"
             - "${NGINX_HOST_HTTPS_PORT}:443"
         links:
             - laravel
-#            - angularjs
+            # - angularjs
         networks:
             - backend
 
@@ -52,28 +53,28 @@ services:
         networks:
             - backend
 
-    # angularjs:
-    #     container_name: ${COMPANY_NAME}_angularjs
-    #     build:
-    #         context: angularjs/
-    #     volumes:
-    #         - ${APPLICATION_HTDOCS}/${APP_NAME}:/usr/src/app
-    #     ports: 
-    #         - "${ANGULARJS_PORT}:4200"
-    #     expose:
-    #         - "${ANGULARJS_PORT}"
-    #     command: /bin/ash -c "yarn install && yarn run start --host 0.0.0.0 --port 4200"
-    #     networks:
-    #         - frontend
+    angularjs:
+        container_name: ${COMPANY_NAME}_angularjs
+        build:
+            context: angularjs/
+        volumes:
+            - ${APPLICATION_HTDOCS}/${APP_NAME}:/usr/src/app
+        ports: 
+            - "${ANGULARJS_PORT}:4200"
+        expose:
+            - "${ANGULARJS_PORT}"
+        command: /bin/ash -c "yarn install && yarn run start --host 0.0.0.0 --port 4200"
+        networks:
+            - frontend
 
     elasticsearch:
         container_name: ${COMPANY_NAME}_elasticsearch
         build:
-            context: elasticsearch/
+            context: elk-packages/elasticsearch/
             args:
                 ELK_VERSION: ${ELK_VERSION}
         volumes:
-            - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+            - ./elk-packages/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
             - elasticsearch:/usr/share/elasticsearch/data
         ports:
             - "9200:9200"
@@ -87,49 +88,49 @@ services:
         networks:
             - backend
 
-    # kibana:
-    #     container_name: ${COMPANY_NAME}_kibana
-    #     build:
-    #         context: kibana/
-    #         args:
-    #             ELK_VERSION: $ELK_VERSION
-    #     volumes:
-    #         - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
-    #     ports:
-    #         - "5601:5601"
-    #     networks:
-    #         - backend
-    #     depends_on:
-    #         - elasticsearch
+    kibana:
+        container_name: ${COMPANY_NAME}_kibana
+        build:
+            context: elk-packages/kibana/
+            args:
+                ELK_VERSION: $ELK_VERSION
+        volumes:
+            - ./elk-packages/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+        ports:
+            - "5601:5601"
+        networks:
+            - backend
+        depends_on:
+            - elasticsearch
 
-    # logstash:
-    #     container_name: ${COMPANY_NAME}_logstash
-    #     build:
-    #         context: logstash/
-    #         args:
-    #             ELK_VERSION: ${ELK_VERSION}
-    #     volumes:
-    #         - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-    #         - ./logstash/pipeline:/usr/share/logstash/pipeline
-    #     ports:
-    #         - "5000:5000/tcp"
-    #         - "5000:5000/udp"
-    #         - "9600:9600"
-    #     environment:
-    #         LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-    #     networks:
-    #         - backend
-    #     depends_on:
-    #         - elasticsearch
+    logstash:
+        container_name: ${COMPANY_NAME}_logstash
+        build:
+            context: elk-packages/logstash/
+            args:
+                ELK_VERSION: ${ELK_VERSION}
+        volumes:
+            - ./elk-packages/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+            - ./elk-packages/logstash/pipeline:/usr/share/logstash/pipeline
+        ports:
+            - "5000:5000/tcp"
+            - "5000:5000/udp"
+            - "9600:9600"
+        environment:
+            LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+        networks:
+            - backend
+        depends_on:
+            - elasticsearch
 
-    # redis:
-    #     container_name: ${COMPANY_NAME}_redis
-    #     build:
-    #         context: redis/
-    #     ports:
-    #         - "${REDIS_PORT}:6379"
-    #     networks:
-    #         - backend
+    redis:
+        container_name: ${COMPANY_NAME}_redis
+        build:
+            context: redis/
+        ports:
+            - "${REDIS_PORT}:6379"
+        networks:
+            - backend
 
     postgresql:
         container_name: ${COMPANY_NAME}_postgresql
