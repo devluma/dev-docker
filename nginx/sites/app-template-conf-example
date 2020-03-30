@@ -3,7 +3,7 @@ server {
 
     server_name app.sysdomotic.com.br;
 
-    root /var/www/html/app/dist/;
+    root /var/www/html/app/public/;
     index index.html index.htm index.php;
 
     charset utf-8;
