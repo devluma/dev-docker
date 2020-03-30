@@ -5,8 +5,9 @@
 # ignora tudo no diretório "postgresql/data"
 postgresql/data/
 
-# ignora tudo no diretório "elasticsearch/data"
-elasticsearch/data/
+# ignora tudo no diretório "elk-packages"
+elk-packages/*
+elk-packages/elasticsearch/data/
 
 # ignora tudo no diretório "redis/data"
 redis/data/
