@@ -18,14 +18,15 @@ services:
             - "${NGINX_HOST_HTTP_API_PORT}:8081"
             - "${NGINX_HOST_HTTPS_PORT}:443"
         links:
-            - laravel
+            - php
         networks:
             - backend
 
-    laravel:
-        container_name: ${COMPANY_NAME}_laravel
+    php:
+        container_name: ${COMPANY_NAME}_php
+        hostname: php
         build:
-            context: laravel/
+            context: php-fpm/
             args:
                 - INSTALL_GD=${PHP_FPM_INSTALL_GD}
                 - INSTALL_COMPRESSION=${PHP_FPM_INSTALL_COMPRESSION}
@@ -54,6 +55,62 @@ services:
             - postgresql
         networks:
             - backend
+
+    # elasticsearch:
+    #     container_name: ${COMPANY_NAME}_elasticsearch
+    #     build:
+    #         context: elk-packages/elasticsearch/
+    #         args:
+    #             ELK_VERSION: ${ELK_VERSION}
+    #     volumes:
+    #         - ./elk-packages/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    #         - elasticsearch:/usr/share/elasticsearch/data
+    #     ports:
+    #         - "9200:9200"
+    #         - "9300:9300"
+    #     environment:
+    #         ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+    #         ELASTIC_PASSWORD: secret
+    #         # Use single node discovery in order to disable production mode and avoid bootstrap checks
+    #         # see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
+    #         discovery.type: single-node
+    #     networks:
+    #         - backend
+
+    # kibana:
+    #     container_name: ${COMPANY_NAME}_kibana
+    #     build:
+    #         context: elk-packages/kibana/
+    #         args:
+    #             ELK_VERSION: ${ELK_VERSION}
+    #     volumes:
+    #         - ./elk-packages/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+    #     ports:
+    #         - "5601:5601"
+    #     networks:
+    #         - backend
+    #     depends_on:
+    #         - elasticsearch
+
+    # logstash:
+    #     container_name: ${COMPANY_NAME}_logstash
+    #     build:
+    #         context: elk-packages/logstash/
+    #         args:
+    #             ELK_VERSION: ${ELK_VERSION}
+    #     volumes:
+    #         - ./elk-packages/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+    #         - ./elk-packages/logstash/pipeline:/usr/share/logstash/pipeline
+    #     ports:
+    #         - "5000:5000/tcp"
+    #         - "5000:5000/udp"
+    #         - "9600:9600"
+    #     environment:
+    #         LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    #     networks:
+    #         - backend
+    #     depends_on:
+    #         - elasticsearch        
 
     redis:
         container_name: ${COMPANY_NAME}_redis
@@ -90,3 +147,5 @@ networks:
 volumes:
     postgres:
         driver: ${VOLUMES_DRIVER}
+    # elasticsearch:
+    #     driver: ${VOLUMES_DRIVER}

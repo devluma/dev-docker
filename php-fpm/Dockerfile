@@ -1,4 +1,4 @@
-FROM php:7.3.10-fpm
+FROM php:7.3.10-fpm as php
  
 LABEL Sysdomotic <sysdomotic@gmail.com>
 
