@@ -1,3 +1,0 @@
-[submodule "elk-packages"]
-	path = elk-packages
-	url = https://github.com/deviantony/docker-elk.git
