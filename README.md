@@ -1,7 +1,7 @@
 # Sysdomotic
 * Docker
 * Project building
-* Timezone UTC (PHP, MySql, HTTPD, ... and OS)
+* Containers (PHP, MYSQL, POSTGRES, NGINX, ... and OS)
 
 ## Documentation to create a development environment or production projects
  
@@ -22,6 +22,10 @@ To run the docker for this project, you need to follow the steps:
      # Use single node discovery in order to disable production mode and avoid bootstrap checks
      # see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
 
++ GIT Config
+     * git config submodule.<module>.ignore all
+
+
 ***
 
 * To start the projects:
@@ -36,7 +40,7 @@ To run the docker for this project, you need to follow the steps:
  
 ## Documentação para criar ambiente de desenvolvimento e produção dos projetos
 
-Para executar o docker para este projeto, vocÃª precisa seguir as etapas:
+Para executar o docker para este projeto, você precisa seguir as etapas:
 
 + Instalar docker e docker-compose:
      * [Para Mac](https://www.docker.com/docker-mac)
@@ -52,6 +56,9 @@ Para executar o docker para este projeto, vocÃª precisa seguir as etapas:
 
      # Use o nó único para desativar o modo de produção e evitar verificações de inicialização
      # veja https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
+
++ Configurações do GIT
+     * git config submodule.<modulo>.ignore all
 
 ***
 
