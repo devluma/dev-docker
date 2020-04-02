@@ -49,6 +49,7 @@ services:
                 - PHP_FPM_PORT=${PHP_FPM_PORT}
                 - PHP_FPM_ENV=${APPLICATION_ENV}
         volumes:
+            - ${DOCKER_STORAGE_DIR}/logs/php-fpm:/var/log/php
             - ${DOCKER_HTDOCS_DIR}/${API_NAME}:/var/www/html/api
         expose:
             - "${PHP_FPM_PORT}"            
@@ -64,7 +65,8 @@ services:
         ports:
             - "${REDIS_PORT}:6379"
         volumes:
-            - ${DOCKER_STORAGE_DIR}/data/redis:/data
+            # - ${DOCKER_STORAGE_DIR}/data/redis:/data
+            - redis:/data
         networks:
             - local_network
 
@@ -76,7 +78,8 @@ services:
         ports:
             - "${POSTGRES_PORT}:5432"
         volumes:
-            - ${DOCKER_STORAGE_DIR}/data/postgres:/var/lib/postgresql
+            # - ${DOCKER_STORAGE_DIR}/data/postgres:/var/lib/postgresql
+            - postgresql:/var/lib/postgresql
             - ${DOCKER_HTDOCS_DIR}/${API_NAME}/database/seeds:/home/db/seeds
             - ${DOCKER_HTDOCS_DIR}/${API_NAME}/database/migrations:/home/db/migrations
         environment:
@@ -113,4 +116,8 @@ networks:
 
 volumes:
     mariadb:
+        driver: ${DOCKER_VOLUMES_DRIVER}
+    postgresql:
+        driver: ${DOCKER_VOLUMES_DRIVER}
+    redis:
         driver: ${DOCKER_VOLUMES_DRIVER}
