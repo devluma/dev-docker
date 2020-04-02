@@ -3,7 +3,6 @@ version: '3.7'
 services:
     nginx:
         container_name: ${COMPANY_NAME}_nginx
-        restart: always
         build:
             context: ${DOCKER_BUILDS_DIR}/nginx/
             args:
@@ -26,7 +25,6 @@ services:
 
     php:
         container_name: ${COMPANY_NAME}_php
-        restart: always
         hostname: php
         build:
             context: ${DOCKER_BUILDS_DIR}/php-fpm/
@@ -55,13 +53,13 @@ services:
         expose:
             - "${PHP_FPM_PORT}"            
         links:
+            - postgresql
             - redis
         networks:
             - local_network
 
     redis:
         container_name: ${COMPANY_NAME}_redis
-        restart: always
         build:
             context: ${DOCKER_BUILDS_DIR}/redis/
         ports:
@@ -71,9 +69,62 @@ services:
         networks:
             - local_network
 
+    elasticsearch:
+        container_name: ${COMPANY_NAME}_elasticsearch
+        build:
+            context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/elasticsearch/
+            args:
+                ELK_VERSION: ${ELK_VERSION}
+        volumes:
+            - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+            - ${DOCKER_STORAGE_DIR}/data/elasticsearch:/usr/share/elasticsearch/data
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        environment:
+            ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+            ELASTIC_PASSWORD: secret
+            discovery.type: single-node
+        networks:
+            - local_network
+
+    kibana:
+        container_name: ${COMPANY_NAME}_kibana
+        build:
+            context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/kibana/
+            args:
+                ELK_VERSION: ${ELK_VERSION}
+        volumes:
+            - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+        ports:
+            - "5601:5601"
+        networks:
+            - local_network
+        depends_on:
+            - elasticsearch
+
+    logstash:
+        container_name: ${COMPANY_NAME}_logstash
+        build:
+            context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/
+            args:
+                ELK_VERSION: ${ELK_VERSION}
+        volumes:
+            - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+            - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/pipeline:/usr/share/logstash/pipeline
+        ports:
+            - "5000:5000/tcp"
+            - "5000:5000/udp"
+            - "9600:9600"
+        environment:
+            LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+        networks:
+            - local_network
+        depends_on:
+            - elasticsearch        
+
     postgresql:
         container_name: ${COMPANY_NAME}_postgresql
-        restart: always
         build:
             context: ${DOCKER_BUILDS_DIR}/postgresql
             dockerfile: Dockerfile
@@ -87,26 +138,6 @@ services:
             - POSTGRES_DB=${POSTGRES_DB}
             - POSTGRES_USER=${POSTGRES_USER}
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-        networks:
-            - local_network
-
-    mariadb:
-        container_name: ${COMPANY_NAME}_mariadb
-        restart: always
-        build:
-            context: ${DOCKER_BUILDS_DIR}/mariadb
-            dockerfile: Dockerfile
-        ports:
-            - "${MARIADB_PORT}:3306"
-        volumes:
-            - ${DOCKER_STORAGE_DIR}/data/mysql:/var/lib/mysql
-            - ${DOCKER_HTDOCS_DIR}/${API_NAME}/database/seeds:/home/db/seeds
-            - ${DOCKER_HTDOCS_DIR}/${API_NAME}/database/migrations:/home/db/migrations
-        environment:
-            - MYSQL_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
-            - MYSQL_DATABASE=${MARIADB_DB}
-            - MYSQL_USER=${MARIADB_USER}
-            - MYSQL_PASSWORD=${MARIADB_PASSWORD}
         networks:
             - local_network
 

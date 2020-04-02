@@ -14,10 +14,13 @@ To run the docker for this project, you need to follow the steps:
      * You can add hosts and configs in the Virtualbox
 
          WINDOWS:
-         ![Screenshot](conf-docker-virtualbox-windows.png)
+         ![Screenshot](docker-virtualbox-conf-windows.png)
 
 + Elastic Stack (ELK) on Docker
      * [https://github.com/deviantony/docker-elk]
+
+     # Use single node discovery in order to disable production mode and avoid bootstrap checks
+     # see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
 
 ***
 
@@ -42,10 +45,13 @@ Para executar o docker para este projeto, vocÃª precisa seguir as etapas:
      * Adicione os hosts e configurações no Virtualbox
 
          WINDOWS:
-         ![Screenshot](conf-docker-virtualbox-windows.png)
+         ![Screenshot](docker-virtualbox-conf-windows.png)
 
 + Pacotes do Elastic (ELK) no Docker
      * [https://github.com/deviantony/docker-elk]
+
+     # Use o nó único para desativar o modo de produção e evitar verificações de inicialização
+     # veja https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
 
 ***
 

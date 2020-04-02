@@ -1,23 +1,24 @@
 # -----------------------------------------------------------------
-# .gitignore para Docker
+# Docker
 # -----------------------------------------------------------------
 
-# ignora tudo no diretório "postgresql/data"
-postgresql/data/
+# ignora tudo no diretório "htdocs"
+htdocs/*
 
-# ignora tudo no diretório "elk-packages"
-elk-packages/*
-elk-packages/elasticsearch/data/
+# ignora tudo no diretório "storage"
+storage/*
 
-# ignora tudo no diretório "redis/data"
-redis/data/
+# ignora tudo no diretório "src/box-bundles/elk-packages"
+src/box-bundles/elk-packages/*
+src/box-bundles/elk-packages/elasticsearch/data/
 
-# ignora tudo no diretório "nginx/logs"
-nginx/logs/
+# ignora tudo no diretório "src/box-builds/nginx/sites", exceto:
+src/box-builds/nginx/sites/*
+!src/box-builds/nginx/sites/*-example
 
-# ignora tudo no diretório "nginx/sites", exceto:
-nginx/sites/*
-!nginx/sites/*-example
+# -----------------------------------------------------------------
+# Default
+# -----------------------------------------------------------------
 
 # ignora todos os arquivos iniciados com .
 .*
