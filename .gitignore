@@ -3,7 +3,8 @@
 # -----------------------------------------------------------------
 
 # ignora tudo no diretório "htdocs"
-htdocs/*
+htdocs/*.local/node_modules/*
+htdocs/*.local/*.lock
 
 # ignora tudo no diretório "storage"
 storage/data/*
