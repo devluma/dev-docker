@@ -10,7 +10,6 @@ storage/data/*
 storage/logs/*
 
 # ignora tudo no diretório "src/bundles"
-src/bundles/docker-elk/*
 src/bundles/docker-elk/elasticsearch/data/
 
 # ignora tudo no diretório "src/box-builds/nginx/sites", exceto:
