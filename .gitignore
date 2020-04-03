@@ -8,13 +8,12 @@ htdocs/*
 # ignora tudo no diretório "storage"
 storage/*
 
-# ignora tudo no diretório "src/box-bundles/elk-packages"
-src/box-bundles/elk-packages/*
-src/box-bundles/elk-packages/elasticsearch/data/
+# ignora tudo no diretório "src/bundles"
+src/bundles/*
 
 # ignora tudo no diretório "src/box-builds/nginx/sites", exceto:
 src/box-builds/nginx/sites/*
-!src/box-builds/nginx/sites/*-example
+!src/box-builds/nginx/sites/*.local.conf
 
 # -----------------------------------------------------------------
 # Default

@@ -18,11 +18,11 @@ To run the docker for this project, you need to follow the steps:
 
 + Elastic Stack (ELK) on Docker
      * [https://github.com/deviantony/docker-elk]
-
-     # Use single node discovery in order to disable production mode and avoid bootstrap checks
-     # see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
+     ## Use single node discovery in order to disable production mode and avoid bootstrap checks
+     * see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
 
 + GIT Config
+     * git submodule add https://github.com/deviantony/docker-elk
      * git config submodule.<module>.ignore all
 
 
@@ -53,12 +53,12 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
 
 + Pacotes do Elastic (ELK) no Docker
      * [https://github.com/deviantony/docker-elk]
-
-     # Use o nó único para desativar o modo de produção e evitar verificações de inicialização
-     # veja https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
+     ## Use single node discovery in order to disable production mode and avoid bootstrap checks
+     * see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
 
 + Configurações do GIT
-     * git config submodule.<modulo>.ignore all
+     * git submodule add https://github.com/deviantony/docker-elk
+     * git config submodule.<module>.ignore all
 
 ***
 
