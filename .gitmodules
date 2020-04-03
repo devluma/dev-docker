@@ -1,6 +1,4 @@
-[submodule "src/box-bundles/elk-packages"]
-	path = src/box-bundles/elk-packages
+
+[submodule "src/bundles/docker-elk"]
+	path = src/bundles/docker-elk
 	url = https://github.com/deviantony/docker-elk
-[submodule "htdocs/app.sysdomotic.com.br"]
-	path = htdocs/app.sysdomotic.com.br
-	url = https://github.com/devluma/es6-examples.git
