@@ -1,3 +1,4 @@
 [submodule "src/bundles/docker-elk"]
 	path = src/bundles/docker-elk
 	url = https://github.com/deviantony/docker-elk.git
+	ignore = all
