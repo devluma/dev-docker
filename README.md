@@ -22,7 +22,7 @@ To run the docker for this project, you need to follow the steps:
      * see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
 
 + GIT Config
-     * git submodule add https://github.com/deviantony/docker-elk
+     * git submodule add https://github.com/deviantony/docker-elk.git
      * git config submodule.<module>.ignore all
 
 
@@ -57,7 +57,7 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
      * see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
 
 + Configurações do GIT
-     * git submodule add https://github.com/deviantony/docker-elk
+     * git submodule add https://github.com/deviantony/docker-elk.git
      * git config submodule.<module>.ignore all
 
 ***
