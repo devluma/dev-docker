@@ -110,11 +110,34 @@ services:
         networks:
             - local_network
 
+    mongodb:
+        container_name: ${COMPANY_NAME}_mongodb
+        build:
+            context: ${DOCKER_BUILDS_DIR}/mongodb
+            dockerfile: Dockerfile
+        ports:
+            - "${MONGODB_PORT}:27017"
+        volumes:
+            # - ${DOCKER_STORAGE_DIR}/data/mongodb:/data/db
+            - mongodb:/data/db
+            - ${DOCKER_HTDOCS_DIR}/${API_NAME}/database/seeds:/home/db/seeds
+            - ${DOCKER_HTDOCS_DIR}/${API_NAME}/database/migrations:/home/db/migrations
+        environment:
+            - MONGO_INITDB_DATABASE=${MONGODB_DB}
+            - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
+            - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
+            - MONGO_DATA_DIR=/data/db
+            - MONGO_LOG_DIR=/dev/null
+        networks:
+            - local_network
+
 networks:
     local_network:
         driver: ${DOCKER_NETWORKS_DRIVER}
 
 volumes:
+    mongodb:
+        driver: ${DOCKER_VOLUMES_DRIVER}
     mariadb:
         driver: ${DOCKER_VOLUMES_DRIVER}
     postgresql:

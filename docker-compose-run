@@ -1,37 +1,4 @@
 #!/bin/bash
 
-#----------------------------#
-# Configuração das Variáveis #
-#----------------------------#
-
-# Absolute path to this script, e.g. /home/user/bin/foo.sh
-SCRIPT=$(readlink -f "${0}")
-
-# Absolute path this script is in, thus /home/user/bin
-SCRIPTPATH=$(dirname "${SCRIPT}")
-
-# Docker configs
-
-DOCKER_BASE_PATH=./../docker
-DOCKER_BIN_DIR=./bin
-DOCKER_FILES_DIR=./src
-DOCKER_BUILDS_DIR=./src/box-builds
-DOCKER_BUNDLES_DIR=./src/box-bundles
-DOCKER_CONFIGS_DIR=./src/box-configs
-DOCKER_HTDOCS_DIR=./../htdocs
-
-export DOCKER_VERSION=v1
-export DOCKER_BASE_PATH=${SCRIPTPATH}
-export DOCKER_BIN_DIR=${DOCKER_BASE_PATH}/bin
-export DOCKER_FILES_DIR=${DOCKER_BASE_PATH}/src
-export DOCKER_BUILDS_DIR=${DOCKER_FILES_DIR}/${DOCKER_VERSION}/box-builds
-export DOCKER_BUNDLES_DIR=${DOCKER_FILES_DIR}/${DOCKER_VERSION}/box-bundles
-export DOCKER_CONFIGS_DIR=${DOCKER_FILES_DIR}/${DOCKER_VERSION}/box-configs
-export DOCKER_HTDOCS_DIR=${DOCKER_BASE_PATH}/../htdocs
-export DOCKER_VOLUMES_DRIVER=local
-export DOCKER_NETWORKS_DRIVER=bridge
-
-echo ${SCRIPT}
-echo ${SCRIPTPATH}
-
-
+# TODO 
+# Implementar comandos para facilicar o uso do docker-composer
