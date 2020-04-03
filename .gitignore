@@ -6,7 +6,8 @@
 htdocs/*
 
 # ignora tudo no diretório "storage"
-storage/*
+storage/data/*
+storage/logs/*
 
 # ignora tudo no diretório "src/bundles"
 src/bundles/*

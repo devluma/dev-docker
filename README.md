@@ -14,7 +14,7 @@ To run the docker for this project, you need to follow the steps:
      * You can add hosts and configs in the Virtualbox
 
          WINDOWS:
-         ![Screenshot](docker-virtualbox-conf-windows.png)
+         ![Screenshot](storage/images/docker-virtualbox-conf-windows.png)
 
 + Elastic Stack (ELK) on Docker
      * [https://github.com/deviantony/docker-elk]
@@ -49,7 +49,7 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
      * Adicione os hosts e configurações no Virtualbox
 
          WINDOWS:
-         ![Screenshot](docker-virtualbox-conf-windows.png)
+         ![Screenshot](storage/images/docker-virtualbox-conf-windows.png)
 
 + Pacotes do Elastic (ELK) no Docker
      * [https://github.com/deviantony/docker-elk]
