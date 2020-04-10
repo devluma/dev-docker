@@ -5,9 +5,6 @@ services:
         container_name: ${COMPANY_NAME}_nginx
         build:
             context: ${DOCKER_BUILDS_DIR}/nginx/
-            args:
-                - NGINX_HOST_APP_NAME=${APP_NAME}
-                - NGINX_HOST_API_NAME=${API_NAME}
         volumes:
             - ${DOCKER_HTDOCS_DIR}/${APP_NAME}:/var/www/html/app
             - ${DOCKER_HTDOCS_DIR}/${API_NAME}:/var/www/html/api
@@ -114,77 +111,76 @@ services:
         container_name: ${COMPANY_NAME}_mongodb
         build:
             context: ${DOCKER_BUILDS_DIR}/mongodb
+            args: 
+                - MONGODB_VERSION=${MONGODB_VERSION}
             dockerfile: Dockerfile
         ports:
             - "${MONGODB_PORT}:27017"
         volumes:
-            # - ${DOCKER_STORAGE_DIR}/data/mongodb:/data/db
             - mongodb:/data/db
-            - ${DOCKER_HTDOCS_DIR}/${API_NAME}/database/seeds:/home/db/seeds
-            - ${DOCKER_HTDOCS_DIR}/${API_NAME}/database/migrations:/home/db/migrations
+            - ${DOCKER_STORAGE_DIR}/logs/mongodb/:/var/log/mongodb/
+            - ${DOCKER_BUILDS_DIR}/mongodb/init.d/:/docker-entrypoint-initdb.d/
         environment:
-            - MONGO_INITDB_DATABASE=${MONGODB_DB}
             - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
             - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
-            - MONGO_DATA_DIR=/data/db
-            - MONGO_LOG_DIR=/dev/null
+            - MONGO_INITDB_DATABASE=${MONGODB_DB}
         networks:
             - local_network
 
-    elasticsearch:
-        container_name: ${COMPANY_NAME}_elasticsearch
-        build:
-            context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/elasticsearch/
-            args:
-                ELK_VERSION: ${ELK_VERSION}
-        volumes:
-            # - ${DOCKER_STORAGE_DIR}/data/elasticsearch:/usr/share/elasticsearch/data
-            - elasticsearch:/usr/share/elasticsearch/data
-            - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-        ports:
-            - "9200:9200"
-            - "9300:9300"
-        environment:
-            ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-            ELASTIC_PASSWORD: secret
-            discovery.type: single-node
-        networks:
-            - local_network
+    # elasticsearch:
+    #     container_name: ${COMPANY_NAME}_elasticsearch
+    #     build:
+    #         context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/elasticsearch/
+    #         args:
+    #             ELK_VERSION: ${ELK_VERSION}
+    #     volumes:
+    #         # - ${DOCKER_STORAGE_DIR}/data/elasticsearch:/usr/share/elasticsearch/data
+    #         - elasticsearch:/usr/share/elasticsearch/data
+    #         - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    #     ports:
+    #         - "9200:9200"
+    #         - "9300:9300"
+    #     environment:
+    #         ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+    #         ELASTIC_PASSWORD: secret
+    #         discovery.type: single-node
+    #     networks:
+    #         - local_network
 
-    kibana:
-        container_name: ${COMPANY_NAME}_kibana
-        build:
-            context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/kibana/
-            args:
-                ELK_VERSION: ${ELK_VERSION}
-        volumes:
-            - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
-        ports:
-            - "5601:5601"
-        networks:
-            - local_network
-        depends_on:
-            - elasticsearch
+    # kibana:
+    #     container_name: ${COMPANY_NAME}_kibana
+    #     build:
+    #         context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/kibana/
+    #         args:
+    #             ELK_VERSION: ${ELK_VERSION}
+    #     volumes:
+    #         - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+    #     ports:
+    #         - "5601:5601"
+    #     networks:
+    #         - local_network
+    #     depends_on:
+    #         - elasticsearch
 
-    logstash:
-        container_name: ${COMPANY_NAME}_logstash
-        build:
-            context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/
-            args:
-                ELK_VERSION: ${ELK_VERSION}
-        volumes:
-            - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-            - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/pipeline:/usr/share/logstash/pipeline
-        ports:
-            - "5000:5000/tcp"
-            - "5000:5000/udp"
-            - "9600:9600"
-        environment:
-            LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-        networks:
-            - local_network
-        depends_on:
-            - elasticsearch        
+    # logstash:
+    #     container_name: ${COMPANY_NAME}_logstash
+    #     build:
+    #         context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/
+    #         args:
+    #             ELK_VERSION: ${ELK_VERSION}
+    #     volumes:
+    #         - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+    #         - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/pipeline:/usr/share/logstash/pipeline
+    #     ports:
+    #         - "5000:5000/tcp"
+    #         - "5000:5000/udp"
+    #         - "9600:9600"
+    #     environment:
+    #         LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    #     networks:
+    #         - local_network
+    #     depends_on:
+    #         - elasticsearch        
 
 networks:
     local_network:
