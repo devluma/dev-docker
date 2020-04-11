@@ -26,9 +26,8 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
      * [Para Mac](https://www.docker.com/docker-mac)
      * [Para Windows](https://www.docker.com/docker-windows)
      * Para Ubuntu ```sudo apt-get install -y docker.io docker-compose```
-     * Adicione os hosts e configurações no Virtualbox
-
-         **`WINDOWS`:**
+     * Adicione os hosts e configurações no Virtualbox do **`WINDOWS`**:
+     
          ![Screenshot](storage/images/docker-virtualbox-conf-windows.png)
 
 + Configurações do `GIT`: ✔
