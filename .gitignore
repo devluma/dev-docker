@@ -8,10 +8,13 @@ htdocs/*.local/*.lock
 
 # ignora tudo no diretório "storage"
 storage/data/*
+!storage/data/.gitkeep
 storage/logs/*
+!storage/logs/.gitkeep
 
 # ignora tudo no diretório "src/bundles"
-src/bundles/docker-elk/elasticsearch/data/
+src/bundles/*
+!src/bundles/.gitkeep
 
 # ignora tudo no diretório "src/box-builds/nginx/sites", exceto:
 src/box-builds/nginx/sites/*
@@ -26,6 +29,9 @@ src/box-builds/nginx/sites/*
 
 # rastreia o arquivo .gitignore (Não ignorar isso)
 !.gitignore
+
+# rastreia o arquivo .gitkeep (Não ignorar isso)
+!.gitkeep
 
 # rastreia o arquivo .editorconfig (Não ignorar isso)
 !.editorconfig
