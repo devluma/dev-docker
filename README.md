@@ -31,7 +31,8 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
          ![Screenshot](storage/images/docker-virtualbox-conf-windows.png)
 
 + Configurações do `GIT`: ✔
-     * [git submodule add](https://github.com/deviantony/docker-elk.git)
+     * Adicione o `SUBMODULE` no diretório `src/bundles/`
+     * ```cd src/bundles/ && git submodule add https://github.com/deviantony/docker-elk.git```
      * ```git config submodule.docker-elk.ignore all```
      * ```git config submodule.src/bundles/docker-elk.ignore all```
      * Adicione as configurações no `.gitconfig` da sua máquina:
