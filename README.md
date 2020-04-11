@@ -5,20 +5,20 @@
 * Project building using docker-compose
 * Containers (NGINX, PHP, NODEJS, MYSQL, POSTGRES, ... and OS)
 
-## Introdução [^0]
+## Introdução {#intro}
 
 Documentação criada para facilitar a infraestrutura de projetos DevOps da Sysdomotic. O repositório contém uma estrutura padrão para a criação de containers utilizando o [Docker](https://www.docker.com/get-started) e [Docker Compose](https://docs.docker.com/compose/)
 
-| Menu                    | Descrição                                                       |
-| ----------------------- | --------------------------------------------------------------- |
-| [^0]: Introdução        | Introdução do projeto.                                          |
-| [^1]: Instalação        | Como instalar os pacotes nescessários para o projeto funcionar. |
-| [^2]: Lista de Pacotes  | Pacotes de containers que já estão funcionando no Docker.       |
-| [^3]: Como usar         | Como usar os comandos no terminal.                              |
-| [^4]: Contribuições     | Como contribuir com o projeto.                                  |
-| [^5]: Licença           | Termos e licenças do projeto.                                   |
+| Menu                           | Descrição                                                       |
+| ------------------------------ | --------------------------------------------------------------- |
+| [Introdução](#intro)           | Introdução do projeto.                                          |
+| [Instalação](#install)         | Como instalar os pacotes nescessários para o projeto funcionar. |
+| [Lista de Pacotes](#packages)  | Pacotes de containers que já estão funcionando no Docker.       |
+| [Como usar](#usage)            | Como usar os comandos no terminal.                              |
+| [Contribuições](#contributing) | Como contribuir com o projeto.                                  |
+| [Licença](#license)            | Termos e licenças do projeto.                                   |
 
-## Instalação [^1]
+## Instalação {#install}
 
 Para executar o docker para este projeto, você precisa seguir as etapas:
 
@@ -48,7 +48,7 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
      * **bin/exec:** ```sh bin/exec.sh```
      * **bin/build:** ```sh bin/build.sh```
 
-## Lista de Pacotes Finalizados [^2]
+## Lista de Pacotes Finalizados {#packages}
 
 #### *Stacks com os principais banco de dados e otimizadores de consultas:*
 - [x] **Stack Database** com `postgres`, `mysql`, ou `mongodb`
@@ -65,7 +65,7 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
 - [ ] **Stack NodeJS/AngularJS** com `nginx`, `nodejs`, `angularjs`, `stack-database` e/ou `stack-search-engine`
 - [ ] **Stack NodeJS/VueJS** com `nginx`, `nodejs`, `vuejs`, `stack-database` e/ou `stack-search-engine`
 
-## Modo de Uso [^3]
+## Modo de Uso {#usage}
 
 ```bash
 
@@ -75,7 +75,7 @@ docker-compose-run down all
 
 ```
 
-## Contribuições [^4]
+## Contribuições {#contributing}
 
 Pull requests são bem vindos 😁✌. Para grandes mudanças, abra uma **`ISSUE`** primeiro para discutir o que você gostaria de mudar 😉.
 
@@ -83,6 +83,6 @@ Atualize os testes conforme apropriado e utilize o projeto conforme desejar.
 
 Espero ter contribuído em algum momento no seu aprendizado. ¯\_( ͡• ͜ʖ ͡•)_/¯
 
-## Licença [^5]
+## Licença {#license}
 
 [MIT](https://choosealicense.com/licenses/mit/)
