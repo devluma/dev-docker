@@ -65,26 +65,32 @@ services:
             context: ${DOCKER_BUILDS_DIR}/redis/
             args: 
                 - REDIS_VERSION=${REDIS_VERSION}
+            dockerfile: Dockerfile
         ports:
             - "${REDIS_PORT}:6379"
         volumes:
             - redis:/data
+            - ${DOCKER_STORAGE_DIR}/logs/redis:/var/log/redis
+            - ${DOCKER_BUILDS_DIR}/redis/init.d:/docker-entrypoint-initdb.d
         networks:
             - local_network
 
-    # Container POSTGRES ✘
+    # Container POSTGRES ✔
     postgresql:
         container_name: ${COMPANY_NAME}_postgresql
         build:
             context: ${DOCKER_BUILDS_DIR}/postgresql
+            args: 
+                - POSTGRES_VERSION=${POSTGRES_VERSION}
             dockerfile: Dockerfile
         ports:
             - "${POSTGRES_PORT}:5432"
         volumes:
-            # - ${DOCKER_STORAGE_DIR}/data/postgres:/var/lib/postgresql
             - postgresql:/var/lib/postgresql
+            - ${DOCKER_STORAGE_DIR}/logs/postgresql:/var/log/postgres
             - ${DOCKER_HTDOCS_DIR}/${API_NAME}/database/seeds:/home/db/seeds
             - ${DOCKER_HTDOCS_DIR}/${API_NAME}/database/migrations:/home/db/migrations
+            - ${DOCKER_BUILDS_DIR}/postgresql/init.d:/docker-entrypoint-initdb.d
         environment:
             - POSTGRES_DB=${POSTGRES_DB}
             - POSTGRES_USER=${POSTGRES_USER}
@@ -92,25 +98,28 @@ services:
         networks:
             - local_network
 
-    # Container MARIADB ✘
+    # Container MARIADB ✔
     mariadb:
         container_name: ${COMPANY_NAME}_mariadb
         build:
             context: ${DOCKER_BUILDS_DIR}/mariadb
+            args: 
+                - MARIADB_VERSION=${MARIADB_VERSION}
             dockerfile: Dockerfile
         ports:
             - "${MARIADB_PORT}:3306"
         volumes:
-            # - ${DOCKER_STORAGE_DIR}/data/mysql:/var/lib/mysql
             - mariadb:/var/lib/mysql
+            - ${DOCKER_STORAGE_DIR}/logs/mariadb:/var/log/mysql
             - ${DOCKER_HTDOCS_DIR}/${API_NAME}/database/seeds:/home/db/seeds
             - ${DOCKER_HTDOCS_DIR}/${API_NAME}/database/migrations:/home/db/migrations
+            - ${DOCKER_BUILDS_DIR}/mariadb/configs/my.cnf:/etc/mysql/my.cnf
+            - ${DOCKER_BUILDS_DIR}/mariadb/init.d:/docker-entrypoint-initdb.d
         environment:
             - MYSQL_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
             - MYSQL_DATABASE=${MARIADB_DB}
             - MYSQL_USER=${MARIADB_USER}
             - MYSQL_PASSWORD=${MARIADB_PASSWORD}
-            - MYSQL_ROOT_HOST=%
         networks:
             - local_network
 
@@ -126,8 +135,8 @@ services:
             - "${MONGODB_PORT}:27017"
         volumes:
             - mongodb:/data/db
-            - ${DOCKER_STORAGE_DIR}/logs/mongodb/:/var/log/mongodb/
-            - ${DOCKER_BUILDS_DIR}/mongodb/init.d/:/docker-entrypoint-initdb.d/
+            - ${DOCKER_STORAGE_DIR}/logs/mongodb:/var/log/mongodb
+            - ${DOCKER_BUILDS_DIR}/mongodb/init.d:/docker-entrypoint-initdb.d
         environment:
             - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
             - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
@@ -193,10 +202,12 @@ services:
     #     depends_on:
     #         - elasticsearch        
 
+# Rede Local ✔
 networks:
     local_network:
         driver: ${DOCKER_NETWORKS_DRIVER}
 
+# Volumes do Docker Local ✔
 volumes:
     mongodb:
         driver: ${DOCKER_VOLUMES_DRIVER}
