@@ -4,8 +4,8 @@ FROM mongo:${MONGODB_VERSION}
 
 LABEL Sysdomotic <sysdomotic@gmail.com>
 
-ENTRYPOINT ["docker-entrypoint.sh"]
-
 CMD ["mongod", "--smallfiles", "--logpath=/dev/null"]
+
+ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 27017

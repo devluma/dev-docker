@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Write your startup scripts here
+echo "MONGODB ENTRYPOINT"
+
 if [ "${MONGO_INITDB_ROOT_USERNAME}" ] && [ "${MONGO_INITDB_ROOT_PASSWORD}" ]; then
 ROOT_AUTH_DATABASE='admin'
 "${mongo[@]}" "${MONGO_INITDB_DATABASE}" <<-EOJS
