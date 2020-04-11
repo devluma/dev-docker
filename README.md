@@ -37,8 +37,7 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
      * ```git config submodule.src/bundles/docker-elk.ignore all```
      * Adicione as configurações no `.gitconfig` da sua máquina:
 
-```text
-
+```
 [user]
 	email = <seu e-mail>
 	name = <seu nome>
@@ -64,7 +63,6 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
     unstage = reset HEAD --
     undo = checkout --
     rollback = reset --soft HEAD~1
-
 ```
 
 + Pacotes do `Elastic-ELK` no `Docker`: ✘ ☂ 📌
