@@ -75,9 +75,9 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
 
 + Scripts `SHELL` para facilitar: ✔
      * **docker-compose-run:** ```docker-compose-run <option> <container or stack>```
-     * **bin/start:** ```sh bin/start.sh```
-     * **bin/exec:** ```sh bin/exec.sh```
-     * **bin/build:** ```sh bin/build.sh```
+     * **bin/start:** ```sh bin/start.sh <option> <repository>```
+     * **bin/exec:** ```sh bin/exec.sh <option> <container> <command>```
+     * **bin/build:** ```sh bin/build.sh <option> <cloud server>```
 
 ## Lista de Pacotes Finalizados
 
@@ -103,6 +103,12 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
 docker-compose-run create nodejs reactjs mongodb
 
 docker-compose-run down all
+
+sh bin/start.sh clone https://github.com/devluma/dev-docker.git --name=docker-local
+
+sh bin/exec.sh bash docker_php php -V
+
+sh bin/build.sh send aws --user=teste --password=teste
 
 ```
 
