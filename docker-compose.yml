@@ -1,6 +1,8 @@
 version: '3.7'
 
 services:
+
+    # Container NGINX ✘
     nginx:
         container_name: ${COMPANY_NAME}_nginx
         build:
@@ -20,6 +22,7 @@ services:
         networks:
             - local_network
 
+    # Container PHP-FPM ✘
     php:
         container_name: ${COMPANY_NAME}_php
         hostname: php
@@ -55,18 +58,21 @@ services:
         networks:
             - local_network
 
+    # Container REDIS ✔
     redis:
         container_name: ${COMPANY_NAME}_redis
         build:
             context: ${DOCKER_BUILDS_DIR}/redis/
+            args: 
+                - REDIS_VERSION=${REDIS_VERSION}
         ports:
             - "${REDIS_PORT}:6379"
         volumes:
-            # - ${DOCKER_STORAGE_DIR}/data/redis:/data
             - redis:/data
         networks:
             - local_network
 
+    # Container POSTGRES ✘
     postgresql:
         container_name: ${COMPANY_NAME}_postgresql
         build:
@@ -86,6 +92,7 @@ services:
         networks:
             - local_network
 
+    # Container MARIADB ✘
     mariadb:
         container_name: ${COMPANY_NAME}_mariadb
         build:
@@ -107,6 +114,7 @@ services:
         networks:
             - local_network
 
+    # Container MONGODB ✔
     mongodb:
         container_name: ${COMPANY_NAME}_mongodb
         build:
@@ -127,6 +135,7 @@ services:
         networks:
             - local_network
 
+    # Container do ELASTICSEARCH ✘
     # elasticsearch:
     #     container_name: ${COMPANY_NAME}_elasticsearch
     #     build:
@@ -147,6 +156,7 @@ services:
     #     networks:
     #         - local_network
 
+    # Container do KIBANA ✘
     # kibana:
     #     container_name: ${COMPANY_NAME}_kibana
     #     build:
@@ -162,6 +172,7 @@ services:
     #     depends_on:
     #         - elasticsearch
 
+    # Container do LOGSTASH ✘
     # logstash:
     #     container_name: ${COMPANY_NAME}_logstash
     #     build:
