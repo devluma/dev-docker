@@ -8,4 +8,6 @@ COPY ./configs/redis.conf /usr/local/etc/redis/redis.conf
 
 CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
 
+ENTRYPOINT ["docker-entrypoint.sh"]
+
 EXPOSE 6379
