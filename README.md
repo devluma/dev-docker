@@ -10,7 +10,7 @@
 Documentação criada para facilitar a infraestrutura de projetos DevOps da Sysdomotic. O repositório contém uma estrutura padrão para a criação de containers utilizando o [Docker](https://www.docker.com/get-started) e [Docker Compose](https://docs.docker.com/compose/)
 
 | Menu                                               | Descrição                                                       |
-| -------------------------------------------------- | --------------------------------------------------------------- |
+| :------------------------------------------------- | :-------------------------------------------------------------- |
 | [Introdução](#introdução)                          | Introdução do projeto.                                          |
 | [Instalação](#instalação)                          | Como instalar os pacotes nescessários para o projeto funcionar. |
 | [Lista de Pacotes](#lista-de-pacotes-finalizados)  | Pacotes de containers que já estão funcionando no Docker.       |
@@ -19,7 +19,7 @@ Documentação criada para facilitar a infraestrutura de projetos DevOps da Sysd
 | [Licença](#licença)                                | Termos e licenças do projeto.                                   |
 
 | Legenda | Descrição                                     |
-| ------- | --------------------------------------------- |
+| :-----: | :-------------------------------------------- |
 |    🚀   | São configurações do servidor de cloud.      |
 |    💥   | São configurações da máquina local.          |
 |    ⛔   | Será nescessário permissão de administrador. |
