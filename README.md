@@ -7,15 +7,17 @@
 
 O projeto foi criado para auxiliar na criação de ambientes dos projetos realizados pela [Sysdomotic](https://www.sysdomotic.com.br).
 
+Mais detalhes do projeto veja na [![Documentação]][wiki].
+
 ## Traduções
 
 > A documentação possui três tipos de linguagem 1 -> pt-BR, 2 -> en e 3 -> es.
 > The documentation has three types of language 1 -> pt-BR, 2 -> en and 3 -> es.
 > La documentación tiene tres tipos de lenguaje 1 -> pt-BR, 2 -> en y 3 -> es.
 
-1. Português do Brazil (<https://github.com/devluma/dev-docker/wiki/portuguese>)
-2. Inglês Americano (<https://github.com/devluma/dev-docker/wiki/english>)
-3. Espanhol (<https://github.com/devluma/dev-docker/wiki/spanhish>)
+1. Português do Brazil (<https://github.com/devluma/dev-docker/blob/master/wiki/portuguese/README-ptBR.md>)
+2. Inglês Americano (<https://github.com/devluma/dev-docker/blob/master/wiki/english/README-en.md>)
+3. Espanhol (<https://github.com/devluma/dev-docker/blob/master/wiki/spanish/README-es.md>)
 
 ## Licença
 
