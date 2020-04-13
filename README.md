@@ -24,7 +24,7 @@ O projeto é [MIT](https://choosealicense.com/licenses/mit/)
 ## Status
 
 [![App Version][version-image]][version-url]
-[![Build Status][travis-image]][travis-url]
+[![Build Status][travis-image]][travis-github-url]
 [![Downloads Stats][version-download-image]][version-download]
 
 <!-- Markdown link & img dfn's -->
