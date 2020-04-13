@@ -30,7 +30,7 @@ Documentação criada para facilitar a infraestrutura de projetos DevOps da Sysd
 
 ## Instalação
 
-Para executar o docker para este projeto, você precisa seguir as etapas:
+Para executar o docker para este projeto, você precisa seguir as seguintes etapas:
 
 + Instalar `docker` e `docker-compose`: ✔ 💥 ⛔
      * [Para Mac](https://www.docker.com/docker-mac)
@@ -57,7 +57,7 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
      * ```cd src/bundles/ && git submodule add https://github.com/deviantony/docker-elk.git```
      * ```git config submodule.docker-elk.ignore all```
      * ```git config submodule.src/bundles/docker-elk.ignore all```
-     * Adicione configurações de atalho no `.gitconfig` da sua máquina para facilidar no desenvolvimento das aplicações utilizando o **`GIT`**:
+     * Adicione configurações de atalho no `.gitconfig` da sua máquina para facilidar no desenvolvimento das aplicações: ✘ 💥
 
 ```
 [user]
@@ -93,28 +93,11 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
      * Use o modo `SINGLE` para desativar o modo de produção e evitar verificações de inicialização.
      * [Mais detalhes](https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html)
 
-+ Scripts `SHELL` para facilitar: ✘ 💥 🚀 ⛔
++ Comandos em `SHELL` para facilitar o uso na criação e execução dos ambientes de desenvolvimento e deploy: ✘ 💥 🚀 ⛔
      * **docker-compose-run:** ```docker-compose-run <option> <container or stack>```
      * **bin/start:** ```sh bin/start.sh <option> <repository>```
      * **bin/exec:** ```sh bin/exec.sh <option> <container> <command>```
      * **bin/build:** ```sh bin/build.sh <option> <cloud server>```
-
-## Lista de Pacotes Finalizados
-
-#### Stacks com os principais banco de dados e otimizadores de consultas:
-- [x] **Stack Database** com `postgres`, `mysql`, ou `mongodb`
-- [x] **Stack Search Engine** com `elastic-elk`, ou `redis`
-
-#### Stacks com PHP/LARAVEL:
-- [ ] **Stack Laravel** com `nginx`, `php-fpm`, `postgres` e `stack-database`
-- [ ] **Stack Laravel/ReactJS** com `nginx`, `php-fpm`, `reactjs`, `stack-database` e/ou `stack-search-engine`
-- [ ] **Stack Laravel/AngularJS** com `nginx`, `php-fpm`, `angularjs`, `posstack-databasetgres` e/ou `stack-search-engine`
-- [ ] **Stack Laravel/VueJS** com `nginx`, `php-fpm`, `vuejs`, `stack-database` e/ou `stack-search-engine`
-
-#### Stacks com NODEJS como API e LIBS/FRAMEWORKS JAVASCRIPT no FRONTEND:
-- [ ] **Stack NodeJS/ReactJS** com `nginx`, `nodejs`, `reactjs`, `stack-database` e/ou `stack-search-engine`
-- [ ] **Stack NodeJS/AngularJS** com `nginx`, `nodejs`, `angularjs`, `stack-database` e/ou `stack-search-engine`
-- [ ] **Stack NodeJS/VueJS** com `nginx`, `nodejs`, `vuejs`, `stack-database` e/ou `stack-search-engine`
 
 ## Modo de Usar
 
@@ -149,6 +132,23 @@ docker network rm $(docker network ls -q)
 # Docker Compose Up Containers
 docker-compose up -d --build postgresql mariadb mongodb redis
 ```
+
+## Lista de Pacotes Finalizados
+
+#### Stacks com os principais banco de dados e otimizadores de consultas:
+- [x] **Stack Database** com `postgres`, `mysql`, ou `mongodb`
+- [x] **Stack Search Engine** com `elastic-elk`, ou `redis`
+
+#### Stacks com PHP/LARAVEL:
+- [ ] **Stack Laravel** com `nginx`, `php-fpm`, `postgres` e `stack-database`
+- [ ] **Stack Laravel/ReactJS** com `nginx`, `php-fpm`, `reactjs`, `stack-database` e/ou `stack-search-engine`
+- [ ] **Stack Laravel/AngularJS** com `nginx`, `php-fpm`, `angularjs`, `posstack-databasetgres` e/ou `stack-search-engine`
+- [ ] **Stack Laravel/VueJS** com `nginx`, `php-fpm`, `vuejs`, `stack-database` e/ou `stack-search-engine`
+
+#### Stacks com NODEJS como API e LIBS/FRAMEWORKS JAVASCRIPT no FRONTEND:
+- [ ] **Stack NodeJS/ReactJS** com `nginx`, `nodejs`, `reactjs`, `stack-database` e/ou `stack-search-engine`
+- [ ] **Stack NodeJS/AngularJS** com `nginx`, `nodejs`, `angularjs`, `stack-database` e/ou `stack-search-engine`
+- [ ] **Stack NodeJS/VueJS** com `nginx`, `nodejs`, `vuejs`, `stack-database` e/ou `stack-search-engine`
 
 ## Contribuições
 
