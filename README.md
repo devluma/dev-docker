@@ -7,7 +7,7 @@
 
 ## Introdução
 
-Documentação criada para facilitar a infraestrutura de projetos DevOps da Sysdomotic. O repositório contém uma estrutura padrão para a criação de containers utilizando o [Docker](https://www.docker.com/get-started) e [Docker Compose](https://docs.docker.com/compose/)
+Documentação criada para facilitar a infraestrutura de projetos DevOps da Sysdomotic. O repositório contém uma estrutura padrão para a criação de projetos utilizando containers do [Docker](https://www.docker.com/get-started) e [Docker Compose](https://docs.docker.com/compose/).
 
 | Menu                                               | Descrição                                                       |
 | :------------------------------------------------- | :-------------------------------------------------------------- |
