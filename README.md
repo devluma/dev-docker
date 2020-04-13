@@ -7,12 +7,14 @@
 
 O projeto foi criado para auxiliar na criação de ambientes dos projetos realizados pela [Sysdomotic](https://www.sysdomotic.com.br).
 
-Mais detalhes do projeto veja na [![Documentação]][wiki].
+Mais detalhes do projeto veja na [Documentação][wiki].
 
 ## Traduções
 
 > A documentação possui três tipos de linguagem 1 -> pt-BR, 2 -> en e 3 -> es.
+> 
 > The documentation has three types of language 1 -> pt-BR, 2 -> en and 3 -> es.
+> 
 > La documentación tiene tres tipos de lenguaje 1 -> pt-BR, 2 -> en y 3 -> es.
 
 1. Português do Brazil (<https://github.com/devluma/dev-docker/blob/master/wiki/portuguese/README-ptBR.md>)
