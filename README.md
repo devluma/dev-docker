@@ -26,9 +26,21 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
      * [Para Mac](https://www.docker.com/docker-mac)
      * [Para Windows](https://www.docker.com/docker-windows)
      * Para Ubuntu ```sudo apt-get install -y docker.io docker-compose```
-     * Adicione os hosts e configurações no Virtualbox do **`WINDOWS`**:
+
++ Configurações do **`VHOSTS`** no **`WINDOWS`**:
+     * Adicione os hosts e configurações no **`Virtualbox`** instalado:
      
          ![Screenshot](storage/images/docker-virtualbox-conf-windows.png)
+
+     * Adicionar os domínios no arquivo de **`HOSTS`** localizado no diretório: **`C:\Windows\System32\drivers\etc`**
+     
+         ![Screenshot](storage/images/docker-hosts-windows.png)
+         
++ Configurações do **`VHOSTS`** no **`LINUX`**:
+      * Precisa apenas configurar o arquivo de **`HOSTS`**:
+
++ Configurações do **`VHOSTS`** no **`MAC`**:
+      * Precisa apenas configurar o arquivo de **`HOSTS`**:
 
 + Configurações do `GIT`: ✔
      * Adicione o `SUBMODULE` no diretório `src/bundles/`
