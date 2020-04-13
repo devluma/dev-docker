@@ -2,3 +2,6 @@
 
 # TODO 
 # Implementar comandos para facilicar o uso do docker-composer
+
+# docker-compose-run create nodejs reactjs mongodb
+# docker-compose-run down all
