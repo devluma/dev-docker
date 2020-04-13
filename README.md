@@ -18,26 +18,26 @@ Documentação criada para facilitar a infraestrutura de projetos DevOps da Sysd
 | [Contribuições](#contribuições)                    | Como contribuir com o projeto.                                  |
 | [Licença](#licença)                                | Termos e licenças do projeto.                                   |
 
-| Legenda | Descrição                                     |
-| :-----: | :-------------------------------------------- |
-|    🚀   | São configurações do servidor de cloud.      |
-|    💥   | São configurações da máquina local.          |
-|    ⛔   | Será nescessário permissão de administrador. |
-|    ✔    | È nescessário instalar.                      |
-|    ✘    | Não é nescessário instalar.                  |
-|    ☂    | Pode ser instalado independente.             |
-|    📌   | È um Submódulo do GIT.                       |
+| Legenda | Descrição                                |
+| :-----: | :--------------------------------------- |
+|    💥   | São configurações da máquina local.     |
+|    🚀   | São configurações do servidor de cloud. |
+|    ⛔   | Será nescessário dar permissão.         |
+|    ✔    | È nescessário instalar.                 |
+|    ✘    | Não é nescessário instalar.             |
+|    ☂    | Pode ser instalado independente.        |
+|    📌   | È um Submódulo do GIT.                  |
 
 ## Instalação
 
 Para executar o docker para este projeto, você precisa seguir as etapas:
 
-+ Instalar `docker` e `docker-compose`: ✔
++ Instalar `docker` e `docker-compose`: ✔ 💥 ⛔
      * [Para Mac](https://www.docker.com/docker-mac)
      * [Para Windows](https://www.docker.com/docker-windows)
      * Para Ubuntu ```sudo apt-get install -y docker.io docker-compose```
 
-+ Configurações do **`VHOSTS`** no **`WINDOWS`**: ✔
++ Configurações do **`VHOSTS`** no **`WINDOWS`**: ✔ 💥 ⛔
      * Adicione os hosts e configurações no **`Virtualbox`** instalado:
      
          ![Screenshot](storage/images/docker-virtualbox-conf-windows.png)
@@ -46,18 +46,18 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
      
          ![Screenshot](storage/images/docker-hosts-windows.png)
          
-+ Configurações do **`VHOSTS`** no **`LINUX`**:
++ Configurações do **`VHOSTS`** no **`LINUX`**: ✔ 💥 ⛔
       * `TODO` ~~Precisa configurar o arquivo de **`HOSTS`**~~
 
-+ Configurações do **`VHOSTS`** no **`MAC`**:
++ Configurações do **`VHOSTS`** no **`MAC`**: ✔ 💥 ⛔
       * `TODO` ~~Precisa configurar o arquivo de **`HOSTS`**~~
 
-+ Configurações do `GIT`: ✔
++ Configurações do `GIT`: ✔ 💥 🚀 ⛔
      * Adicione o `SUBMODULE` no diretório `src/bundles/`
      * ```cd src/bundles/ && git submodule add https://github.com/deviantony/docker-elk.git```
      * ```git config submodule.docker-elk.ignore all```
      * ```git config submodule.src/bundles/docker-elk.ignore all```
-     * Adicione as configurações no `.gitconfig` da sua máquina:
+     * Adicione configurações de atalho no `.gitconfig` da sua máquina para facilidar no desenvolvimento das aplicações utilizando o **`GIT`**:
 
 ```
 [user]
@@ -87,13 +87,13 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
     rollback = reset --soft HEAD~1
 ```
 
-+ Pacotes do `Elastic-ELK` no `Docker`: ✘ ☂ 📌
++ Pacotes do `Elastic-ELK` no `Docker`: ✘ ☂ 📌 💥 ⛔
      * [deviantony/docker-elk](https://github.com/deviantony/docker-elk)
-     * ~~Use single node discovery in order to disable production mode and avoid bootstrap checks~~
-     * ~~Use o modo `SINGLE` para desativar o modo de produção e evitar verificações de inicialização~~
+     * Use single node discovery in order to disable production mode and avoid bootstrap checks.
+     * Use o modo `SINGLE` para desativar o modo de produção e evitar verificações de inicialização.
      * [Mais detalhes](https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html)
 
-+ Scripts `SHELL` para facilitar: ✔
++ Scripts `SHELL` para facilitar: ✘ 💥 🚀 ⛔
      * **docker-compose-run:** ```docker-compose-run <option> <container or stack>```
      * **bin/start:** ```sh bin/start.sh <option> <repository>```
      * **bin/exec:** ```sh bin/exec.sh <option> <container> <command>```
@@ -117,6 +117,8 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
 - [ ] **Stack NodeJS/VueJS** com `nginx`, `nodejs`, `vuejs`, `stack-database` e/ou `stack-search-engine`
 
 ## Modo de Usar
+
+Lista de comandos em shell script para ajudar o desenvolvedor com os projetos utilizando o docker-compose.
 
 ```bash
 # Script Run Docker Compose: 
