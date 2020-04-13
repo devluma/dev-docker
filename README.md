@@ -18,6 +18,16 @@ Documentação criada para facilitar a infraestrutura de projetos DevOps da Sysd
 | [Contribuições](#contribuições)                    | Como contribuir com o projeto.                                  |
 | [Licença](#licença)                                | Termos e licenças do projeto.                                   |
 
+| Legenda | Descrição                                     |
+| ------- | --------------------------------------------- |
+|    🚀   | São configurações do servidor de cloud.      |
+|    💥   | São configurações da máquina local.          |
+|    ⛔   | Será nescessário permissão de administrador. |
+|    ✔    | È nescessário instalar.                      |
+|    ✘    | Não é nescessário instalar.                  |
+|    ☂    | Pode ser instalado independente.             |
+|    📌   | È um Submódulo do GIT.                       |
+
 ## Instalação
 
 Para executar o docker para este projeto, você precisa seguir as etapas:
@@ -27,7 +37,7 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
      * [Para Windows](https://www.docker.com/docker-windows)
      * Para Ubuntu ```sudo apt-get install -y docker.io docker-compose```
 
-+ Configurações do **`VHOSTS`** no **`WINDOWS`**:
++ Configurações do **`VHOSTS`** no **`WINDOWS`**: ✔
      * Adicione os hosts e configurações no **`Virtualbox`** instalado:
      
          ![Screenshot](storage/images/docker-virtualbox-conf-windows.png)
@@ -37,10 +47,10 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
          ![Screenshot](storage/images/docker-hosts-windows.png)
          
 + Configurações do **`VHOSTS`** no **`LINUX`**:
-      * Precisa apenas configurar o arquivo de **`HOSTS`**:
+      * `TODO` ~~Precisa configurar o arquivo de **`HOSTS`**~~
 
 + Configurações do **`VHOSTS`** no **`MAC`**:
-      * Precisa apenas configurar o arquivo de **`HOSTS`**:
+      * `TODO` ~~Precisa configurar o arquivo de **`HOSTS`**~~
 
 + Configurações do `GIT`: ✔
      * Adicione o `SUBMODULE` no diretório `src/bundles/`
