@@ -97,17 +97,33 @@ Para executar o docker para este projeto, você precisa seguir as etapas:
 ## Modo de Usar
 
 ```bash
-
+# Script Run Docker Compose: 
 docker-compose-run create nodejs reactjs mongodb
-
 docker-compose-run down all
 
+# Script Run Start Project:
 sh bin/start.sh clone https://github.com/devluma/dev-docker.git --name=docker-local
 
+# Script Run Exec Command with Project:
 sh bin/exec.sh bash docker_php php -V
 
+# Script Run Exec Build Project with Product:
 sh bin/build.sh send aws --user=teste --password=teste
 
+# Docker Containers:  
+docker container rm -f $(docker container ls -a -q)
+ 
+# Docker Imagens :      
+docker image rm -f $(docker image ls -a -q)
+ 
+# Docker Volumes :      
+docker volume rm -f $(docker volume ls -q)
+ 
+# Docker Networks :    
+docker network rm $(docker network ls -q)
+
+# Docker Compose Up Containers
+docker-compose up -d --build postgresql mariadb mongodb redis
 ```
 
 ## Contribuições
