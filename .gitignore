@@ -4,14 +4,7 @@
 
 # ignora tudo no diretório "htdocs"
 htdocs/*
-htdocs/__examples__/*.local/node_modules/
-htdocs/__examples__/*.local/*.lock
-!htdocs/__examples__/*.local/database/*
-!htdocs/__examples__/*.local/public/*
-!htdocs/__examples__/*.local/src/*
-!htdocs/__examples__/*.local/*babelrc
-!htdocs/__examples__/*.local/*package.json
-!htdocs/__examples__/*.local/*.config.js
+!htdocs/.gitkeep
 
 # ignora tudo no diretório "storage"
 storage/data/*
