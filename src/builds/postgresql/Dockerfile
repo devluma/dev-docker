@@ -1,4 +1,5 @@
 ARG POSTGRES_VERSION=11.5
+ARG POSTGRES_PORT=5432
 
 FROM postgres:${POSTGRES_VERSION}
 
@@ -8,8 +9,8 @@ RUN echo "host all  all  0.0.0.0/0  md5" >> /var/lib/postgresql/data/pg_hba.conf
 
 RUN mkdir -p "$PGDATA" && chown -R postgres:postgres "$PGDATA" && chmod 777 "$PGDATA";
 
-CMD ["postgres"]
-
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-EXPOSE 5432
+CMD ["postgres"]
+
+EXPOSE ${POSTGRES_PORT}
