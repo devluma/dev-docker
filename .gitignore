@@ -4,6 +4,8 @@
 
 # ignora tudo no diretório "htdocs"
 htdocs/*
+htdocs/__examples__/*.local/node_modules/
+htdocs/__examples__/*.local/*.lock
 !htdocs/__examples__/*.local/database/*
 !htdocs/__examples__/*.local/public/*
 !htdocs/__examples__/*.local/src/*
