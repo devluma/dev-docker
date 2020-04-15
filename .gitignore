@@ -3,8 +3,13 @@
 # -----------------------------------------------------------------
 
 # ignora tudo no diretório "htdocs"
-htdocs/*.local/node_modules/*
-htdocs/*.local/*.lock
+htdocs/*
+!htdocs/__examples__/*.local/database/*
+!htdocs/__examples__/*.local/public/*
+!htdocs/__examples__/*.local/src/*
+!htdocs/__examples__/*.local/*babelrc
+!htdocs/__examples__/*.local/*package.json
+!htdocs/__examples__/*.local/*.config.js
 
 # ignora tudo no diretório "storage"
 storage/data/*
