@@ -1,11 +1,12 @@
 ARG MARIADB_VERSION=10.4
+ARG MARIADB_PORT=3306
 
 FROM mariadb:${MARIADB_VERSION}
 
 LABEL Sysdomotic <sysdomotic@gmail.com>
 
-CMD ["mysqld", "--user=mysql", "--lower_case_table_names=1"]
-
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-EXPOSE 3306
+CMD ["mysqld", "--user=mysql", "--lower_case_table_names=1"]
+
+EXPOSE ${MARIADB_PORT}
