@@ -13,46 +13,33 @@ services:
             - ${DOCKER_STORAGE_DIR}/logs/nginx:/var/log/nginx
             - ${DOCKER_BUILDS_DIR}/${NGINX_SITES_PATH}:/etc/nginx/conf.d
         ports:
-            - "${NGINX_HOST_HTTP_APP_PORT}:80"
-            - "${NGINX_HOST_HTTP_API_PORT}:8081"
-            - "${NGINX_HOST_HTTPS_PORT}:443"
+            - "${NGINX_HOST_HTTP_DEFAULT_PORT}:80"
+            - "${NGINX_HOST_HTTPS_DEFAULT_PORT}:443"
+            - "${NGINX_HOST_HTTP_BUILD_PORT}:8080"
+            - "${NGINX_HOST_HTTP_APP_PORT}:8081"
+            - "${NGINX_HOST_HTTP_API_PORT}:8082"
         links:
             - php
             - redis
         networks:
             - local_network
 
-    # Container PHP-FPM ✘
+    # Container PHP-FPM ✔
     php:
         container_name: ${COMPANY_NAME}_php
         hostname: php
         build:
             context: ${DOCKER_BUILDS_DIR}/php-fpm/
             args:
-                - INSTALL_GD=${PHP_FPM_INSTALL_GD}
-                - INSTALL_COMPRESSION=${PHP_FPM_INSTALL_COMPRESSION}
-                - INSTALL_FTP=${PHP_FPM_INSTALL_FTP}
-                - INSTALL_MBSTRING=${PHP_FPM_INSTALL_MBSTRING}
-                - INSTALL_MCRYPT=${PHP_FPM_INSTALL_MCRYPT}
-                - INSTALL_PDO_MYSQL=${PHP_FPM_INSTALL_PDO_MYSQL}
-                - INSTALL_PDO_POSTGRESQL=${PHP_FPM_INSTALL_PDO_POSTGRESQL}
-                - INSTALL_MYSQLI=${PHP_FPM_INSTALL_MYSQLI}
-                - INSTALL_BCMATH=${PHP_FPM_INSTALL_BCMATH}
-                - INSTALL_OPCACHE=${PHP_FPM_INSTALL_OPCACHE}
-                - INSTALL_INTL=${PHP_FPM_INSTALL_INTL}
-                - INSTALL_XDEBUG=${PHP_FPM_INSTALL_XDEBUG}
-                - INSTALL_TOKENIZER=${PHP_FPM_INSTALL_TOKENIZER}
-                - INSTALL_JSON_XML=${PHP_FPM_INSTALL_JSON_XML}
-                - INSTALL_CURL=${PHP_FPM_INSTALL_CURL}
-                - INSTALL_OPENSSL=${PHP_FPM_INSTALL_OPENSSL}
-                - INSTALL_COMPOSER=${PHP_FPM_INSTALL_COMPOSER}
-                - PHP_FPM_PORT=${PHP_FPM_PORT}
+                - PHP_FPM_VERSION=${PHP_FPM_VERSION}
                 - PHP_FPM_ENV=${APPLICATION_ENV}
+        ports:
+            - "${PHP_FPM_PORT}:9000"
+        expose:
+            - "${PHP_FPM_PORT}"     
         volumes:
             - ${DOCKER_STORAGE_DIR}/logs/php-fpm:/var/log/php
             - ${DOCKER_HTDOCS_DIR}/${API_NAME}:/var/www/html/api
-        expose:
-            - "${PHP_FPM_PORT}"            
         links:
             - redis
         networks:
