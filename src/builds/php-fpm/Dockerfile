@@ -1,6 +1,6 @@
 ARG PHP_FPM_VERSION=7.4-fpm
 ARG PHP_FPM_ENV
-ARG PORT=9000
+ARG PHP_FPM_PORT=9000
 
 FROM php:${PHP_FPM_VERSION} as php
 
@@ -41,7 +41,7 @@ RUN find /var/www/html -type f -exec chmod u+rw,g+rw,o+r {} +
 
 # Environment
 ENV PHP_ENV=${PHP_FPM_ENV}
-ENV PORT=${PORT}
+ENV PORT=${PHP_FPM_PORT}
 
 WORKDIR /var/www/html/api
 
@@ -49,4 +49,4 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 
 CMD ["php-fpm"]
 
-EXPOSE ${PORT}
+EXPOSE ${PHP_FPM_PORT}
