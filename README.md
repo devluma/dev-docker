@@ -31,9 +31,6 @@ O projeto é [MIT](https://choosealicense.com/licenses/mit/)
 [![Build Status][travis-image]][travis-github-url]
 [![Downloads Stats][version-download-image]][version-download]
 
-<!-- 
-     Markdown link & img dfn's 
--->
 [version-image]: https://img.shields.io/badge/app-1.0.0-brightgreen?style=flat-square
 [version-url]: https://github.com/devluma/dev-docker/releases
 [version-download-image]: https://img.shields.io/badge/download-1.0.0-blue?style=flat-square
