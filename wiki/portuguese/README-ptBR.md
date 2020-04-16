@@ -2,7 +2,10 @@
 
 ## Introdução
 
-Documentação criada para facilitar a infraestrutura de projetos DevOps da Sysdomotic. O repositório contém uma estrutura padrão para a criação de projetos utilizando containers do [Docker](https://www.docker.com/get-started) e [Docker Compose](https://docs.docker.com/compose/).
+Documentação criada para facilitar a infraestrutura de projetos DevOps da Sysdomotic trabalhando com base nos mais váriados projetos. 
+O repositório contém uma estrutura padrão para a criação de projetos utilizando containers do [Docker](https://www.docker.com/get-started) e [Docker Compose](https://docs.docker.com/compose/) para criação de ambientes de desenvolvimento, o projeto não foi testado em ambiente de produção utilizando totalmente o Docker em produção.
+
+> Se quiser contribuir faça um `FORK` do projeto ou crie uma `FEATURE` e nos ajude a implementar :blush:
 
 | Menu                                               | Descrição                                                       |
 | :------------------------------------------------- | :-------------------------------------------------------------- |
@@ -53,34 +56,7 @@ Para executar o docker para este projeto, você precisa seguir as seguintes etap
      * ```git config submodule.docker-elk.ignore all```
      * ```git config submodule.src/bundles/docker-elk.ignore all```
      * Adicione configurações de atalho no `.gitconfig` da máquina para facilidar no desenvolvimento das aplicações: ✘ 💥
-
-```
-[user]
-	email = <seu e-mail>
-	name = <seu nome>
-
-[alias]
-    ci = "!f() { git commit -m \"$*\"; }; f"
-    co = checkout
-    cm = checkout master
-    cb = checkout -b
-    ckd = checkout -b develop
-    fet = fetch 
-    st = status -sb
-    sf = show --name-only
-    lg = log --pretty=format:'%Cred%h%Creset %C(bold)%cr%Creset %Cgreen<%an>%Creset %s' --max-count=30
-    incoming = !(git fetch --quiet && git log --pretty=format:'%C(yellow)%h %C(white)- %C(red)%an %C(white)- %C(cyan)%d%Creset %s %C(white)- %ar%Creset' ..@{u})
-    outgoing = !(git fetch --quiet && git log --pretty=format:'%C(yellow)%h %C(white)- %C(red)%an %C(white)- %C(cyan)%d%Creset %s %C(white)- %ar%Creset' @{u}..)
-    pum = pull origin master
-    pud = pull origin develop
-    pl = pull
-    pom = push origin master -u
-    pod = push origin develop -u
-    ps = push
-    unstage = reset HEAD --
-    undo = checkout --
-    rollback = reset --soft HEAD~1
-```
+     * [Mais detalhes](https://github.com/devluma/dev-configs)
 
 + Pacotes do `Elastic-ELK` no `Docker`: ✘ ☂ 📌 💥 ⛔
      * [deviantony/docker-elk](https://github.com/deviantony/docker-elk)
@@ -133,6 +109,7 @@ docker-compose up -d --build nginx php redis postgresql mariadb mongodb
 #### Stacks com os principais banco de dados e otimizadores de consultas:
 - [x] **Stack Database** com `postgres`, `mysql`, ou `mongodb`
 - [x] **Stack Search Engine** com `elastic-elk`, ou `redis`
+- [ ] **Stack IoT** com `graphql`, `mqtt`, `johnny-five`, ou `nodered`
 
 #### Stacks com PHP/LARAVEL:
 - [x] **Stack Laravel** com `nginx`, `php-fpm`, e `stack-database`
@@ -140,10 +117,25 @@ docker-compose up -d --build nginx php redis postgresql mariadb mongodb
 - [ ] **Stack Laravel/AngularJS** com `nginx`, `php-fpm`, `angularjs`, `stack-database` e/ou `stack-search-engine`
 - [ ] **Stack Laravel/VueJS** com `nginx`, `php-fpm`, `vuejs`, `stack-database` e/ou `stack-search-engine`
 
-#### Stacks com NODEJS e LIBS/FRAMEWORKS JAVASCRIPT:
+#### Stacks com NODEJS:
 - [ ] **Stack NodeJS/ReactJS** com `nginx`, `nodejs`, `reactjs`, `stack-database` e/ou `stack-search-engine`
 - [ ] **Stack NodeJS/AngularJS** com `nginx`, `nodejs`, `angularjs`, `stack-database` e/ou `stack-search-engine`
 - [ ] **Stack NodeJS/VueJS** com `nginx`, `nodejs`, `vuejs`, `stack-database` e/ou `stack-search-engine`
+
+#### Stacks com PYTHON:
+- [ ] **Stack Python/ReactJS** com `nginx`, `django`, `reactjs`, `stack-database` e/ou `stack-search-engine`
+- [ ] **Stack Python/AngularJS** com `nginx`, `django`, `angularjs`, `stack-database` e/ou `stack-search-engine`
+- [ ] **Stack Python/VueJS** com `nginx`, `django`, `vuejs`, `stack-database` e/ou `stack-search-engine`
+
+#### Stacks com GOLANG:
+- [ ] **Stack Go/ReactJS** com `nginx`, `gin-gonic`, `reactjs`, `stack-database` e/ou `stack-search-engine`
+- [ ] **Stack Go/AngularJS** com `nginx`, `gin-gonic`, `angularjs`, `stack-database` e/ou `stack-search-engine`
+- [ ] **Stack Go/VueJS** com `nginx`, `gin-gonic`, `vuejs`, `stack-database` e/ou `stack-search-engine`
+
+#### Stacks IoT com MQTT:
+- [ ] **Stack IoT/ReactJS** com `nginx`, `nodejs`, `reactjs`, `stack-database` e/ou `stack-iot`
+- [ ] **Stack IoT/AngularJS** com `nginx`, `nodejs`, `angularjs`, `stack-database` e/ou `stack-iot`
+- [ ] **Stack IoT/VueJS** com `nginx`, `nodejs`, `vuejs`, `stack-database` e/ou `stack-iot`
 
 ## Contribuições
 
@@ -156,9 +148,9 @@ Pull requests são bem vindos 😁✌. Para grandes mudanças, abra uma **`ISSUE
 5. Criar um novo Pull Request
 
 > Atualize os testes conforme apropriado e utilize o projeto conforme desejar.
-> Espero ter contribuído em algum momento no seu aprendizado. ¯\_( ͡• ͜ʖ ͡•)_/¯.
 > Utilize o projeto em seu ambiente de desenvolvimento.
 > Deixe um :thumbsup: se gostou ou :-1: mas não esqueça de dar um comentário sobre oque você achou do projeto :wink:
+> Espero ter contribuído em algum momento no seu aprendizado. ¯\_( ͡• ͜ʖ ͡•)_/¯.
 
 ## Licença
 
