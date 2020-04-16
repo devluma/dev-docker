@@ -35,11 +35,11 @@ Para executar o docker para este projeto, você precisa seguir as seguintes etap
 + Configurações do **`VHOSTS`** no **`WINDOWS`**: ✔ 💥 ⛔
      * Adicione os hosts e configurações no **`Virtualbox`** instalado:
      
-         ![Screenshot](./../images/docker-virtualbox-conf-windows.png)
+         ![Screenshot](https://github.com/devluma/dev-docker/blob/master/wiki/images/docker-virtualbox-conf-windows.png)
 
      * Adicionar os domínios no arquivo de **`HOSTS`** localizado no diretório: **`C:\Windows\System32\drivers\etc`**
      
-         ![Screenshot](./../images/docker-hosts-windows.png)
+         ![Screenshot](https://github.com/devluma/dev-docker/blob/master/wiki/images/docker-hosts-windows.png)
          
 + Configurações do **`VHOSTS`** no **`LINUX`**: ✔ 💥 ⛔
       * `TODO` ~~Precisa configurar o arquivo de **`HOSTS`**~~
