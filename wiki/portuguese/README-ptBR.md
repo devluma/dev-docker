@@ -140,7 +140,7 @@ docker-compose up -d --build nginx php redis postgresql mariadb mongodb
 - [ ] **Stack Laravel/AngularJS** com `nginx`, `php-fpm`, `angularjs`, `stack-database` e/ou `stack-search-engine`
 - [ ] **Stack Laravel/VueJS** com `nginx`, `php-fpm`, `vuejs`, `stack-database` e/ou `stack-search-engine`
 
-#### Stacks com NODEJS como API e LIBS/FRAMEWORKS JAVASCRIPT no FRONTEND:
+#### Stacks com NODEJS e LIBS/FRAMEWORKS JAVASCRIPT:
 - [ ] **Stack NodeJS/ReactJS** com `nginx`, `nodejs`, `reactjs`, `stack-database` e/ou `stack-search-engine`
 - [ ] **Stack NodeJS/AngularJS** com `nginx`, `nodejs`, `angularjs`, `stack-database` e/ou `stack-search-engine`
 - [ ] **Stack NodeJS/VueJS** com `nginx`, `nodejs`, `vuejs`, `stack-database` e/ou `stack-search-engine`
@@ -164,4 +164,4 @@ Pull requests são bem vindos 😁✌. Para grandes mudanças, abra uma **`ISSUE
 
 O projeto é [MIT](https://choosealicense.com/licenses/mit/)
 
-###### <div align="right">[Voltar](#sysdomotic) ↺</div>
+###### <div align="right">[Voltar](#introdução) ↺</div>
