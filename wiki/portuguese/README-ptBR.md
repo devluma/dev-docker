@@ -125,19 +125,19 @@ docker volume rm -f $(docker volume ls -q)
 docker network rm $(docker network ls -q)
 
 # Docker Compose Up Containers
-docker-compose up -d --build postgresql mariadb mongodb redis
+docker-compose up -d --build nginx php redis postgresql mariadb mongodb
 ```
 
 ## Lista de Pacotes Finalizados
 
 #### Stacks com os principais banco de dados e otimizadores de consultas:
-- [ ] **Stack Database** com `postgres`, `mysql`, ou `mongodb`
-- [ ] **Stack Search Engine** com `elastic-elk`, ou `redis`
+- [x] **Stack Database** com `postgres`, `mysql`, ou `mongodb`
+- [x] **Stack Search Engine** com `elastic-elk`, ou `redis`
 
 #### Stacks com PHP/LARAVEL:
-- [ ] **Stack Laravel** com `nginx`, `php-fpm`, `postgres` e `stack-database`
+- [x] **Stack Laravel** com `nginx`, `php-fpm`, `postgres` e `stack-database`
 - [ ] **Stack Laravel/ReactJS** com `nginx`, `php-fpm`, `reactjs`, `stack-database` e/ou `stack-search-engine`
-- [ ] **Stack Laravel/AngularJS** com `nginx`, `php-fpm`, `angularjs`, `posstack-databasetgres` e/ou `stack-search-engine`
+- [ ] **Stack Laravel/AngularJS** com `nginx`, `php-fpm`, `angularjs`, `stack-database` e/ou `stack-search-engine`
 - [ ] **Stack Laravel/VueJS** com `nginx`, `php-fpm`, `vuejs`, `stack-database` e/ou `stack-search-engine`
 
 #### Stacks com NODEJS como API e LIBS/FRAMEWORKS JAVASCRIPT no FRONTEND:
