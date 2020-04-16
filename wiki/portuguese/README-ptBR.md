@@ -135,7 +135,7 @@ docker-compose up -d --build nginx php redis postgresql mariadb mongodb
 - [x] **Stack Search Engine** com `elastic-elk`, ou `redis`
 
 #### Stacks com PHP/LARAVEL:
-- [x] **Stack Laravel** com `nginx`, `php-fpm`, `postgres` e `stack-database`
+- [x] **Stack Laravel** com `nginx`, `php-fpm`, e `stack-database`
 - [ ] **Stack Laravel/ReactJS** com `nginx`, `php-fpm`, `reactjs`, `stack-database` e/ou `stack-search-engine`
 - [ ] **Stack Laravel/AngularJS** com `nginx`, `php-fpm`, `angularjs`, `stack-database` e/ou `stack-search-engine`
 - [ ] **Stack Laravel/VueJS** com `nginx`, `php-fpm`, `vuejs`, `stack-database` e/ou `stack-search-engine`
