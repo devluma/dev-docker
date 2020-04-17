@@ -66,10 +66,10 @@ docker/ >> # Diretório principal
 │   └── bundles/ >> # Diretório com os arquivos de módulos externos
 │       └── docker-elk/ >> # Submodulo elastic-elk do https://github.com/deviantony/docker-elk
 └── stacks/ >> # Diretório com os arquivos de configurações das stacks pré-configuradas do docker-compose
-│   ├── docker-compose-stack-iot-vuejs.yml >> # Stack iot com vuejs utilizado pelo docker-compose para montar os containers
-│   ├── docker-compose-stack-laravel-angularjs-elk.yml >> # Stack laravel-php com angularjs e elasticsearch usado pelo docker-compose
-│   ├── docker-compose-stack-laravel-angularjs.yml >> # Stack laravel-php com angularjs utilizado pelo docker-compose para montar os containers
-│   └── docker-compose-stack-nodejs-reactjs.yml >> # Stack nodejs com reactjs utilizado pelo docker-compose para montar os containers
+│   ├── stack-iot-vuejs-postgresql.yml >> # Stack iot com vuejs utilizado pelo docker-compose para montar os containers
+│   ├── stack-laravel-angularjs-elk-mariadb.yml >> # Stack laravel-php com angularjs e elasticsearch usado pelo docker-compose
+│   ├── stack-laravel-angularjs-postgresql.yml >> # Stack laravel-php com angularjs utilizado pelo docker-compose para montar os containers
+│   └── stack-nodejs-reactjs-mongodb.yml >> # Stack nodejs com reactjs utilizado pelo docker-compose para montar os containers
 └── storage/ >> # Diretório com para guardar os logs e os dados dos volumes dos containers criados
 │   ├── data/ >> # Diretório com os registros de cada volume do container montado
 │   └── logs/ >> # Diretório com os logs de cada container montado
