@@ -1,0 +1,153 @@
+# Stack Laravel/AngularJS with MariaDB
+version: '3.7'
+
+services:
+
+    # Container NGINX ✔
+    nginx:
+        container_name: ${COMPANY_NAME}_nginx
+        build:
+            context: ${DOCKER_BUILDS_DIR}/nginx/
+            args:
+                - NGINX_VERSION=${NGINX_VERSION}
+                - NGINX_APP_PORT=${NGINX_HOST_HTTP_APP_PORT}
+                - NGINX_API_PORT=${NGINX_HOST_HTTP_API_PORT}
+                - NGINX_HOST_APP_NAME=${APP_NAME}
+                - NGINX_HOST_API_NAME=${API_NAME}
+        volumes:
+            - ${DOCKER_HTDOCS_DIR}/${APP_NAME}:/var/www/html/app
+            - ${DOCKER_HTDOCS_DIR}/${API_NAME}:/var/www/html/api
+            - ${DOCKER_STORAGE_DIR}/logs/nginx:/var/log/nginx
+            - ${DOCKER_BUILDS_DIR}/${NGINX_SITES_PATH}:/etc/nginx/conf.d
+        ports:
+            - "${NGINX_HOST_HTTP_DEFAULT_PORT}:80"
+            - "${NGINX_HOST_HTTPS_DEFAULT_PORT}:443"
+            - "${NGINX_HOST_HTTP_APP_PORT}:8081"
+            - "${NGINX_HOST_HTTP_API_PORT}:8082"
+        links:
+            - php
+            - redis
+        networks:
+            - local_network
+
+    # Container PHP-FPM ✔
+    php:
+        container_name: ${COMPANY_NAME}_php
+        hostname: php
+        build:
+            context: ${DOCKER_BUILDS_DIR}/php-fpm/
+            args:
+                - PHP_FPM_VERSION=${PHP_FPM_VERSION}
+                - PHP_FPM_ENV=${APPLICATION_ENV}
+        ports:
+            - "${PHP_FPM_PORT}:9000"
+        expose:
+            - "${PHP_FPM_PORT}"     
+        volumes:
+            - ${DOCKER_STORAGE_DIR}/logs/php-fpm:/var/log/php
+            - ${DOCKER_HTDOCS_DIR}/${API_NAME}:/var/www/html/api
+        links:
+            - redis
+        networks:
+            - local_network
+
+    # Container MARIADB ✔
+    mariadb:
+        container_name: ${COMPANY_NAME}_mariadb
+        build:
+            context: ${DOCKER_BUILDS_DIR}/mariadb
+            args: 
+                - MARIADB_VERSION=${MARIADB_VERSION}
+            dockerfile: Dockerfile
+        ports:
+            - "${MARIADB_PORT}:3306"
+        volumes:
+            - mariadb:/var/lib/mysql
+            - ${DOCKER_STORAGE_DIR}/logs/mariadb:/var/log/mysql
+            - ${DOCKER_HTDOCS_DIR}/${API_NAME}/database/seeds:/home/db/seeds
+            - ${DOCKER_HTDOCS_DIR}/${API_NAME}/database/migrations:/home/db/migrations
+            - ${DOCKER_BUILDS_DIR}/mariadb/configs/my.cnf:/etc/mysql/my.cnf
+            - ${DOCKER_BUILDS_DIR}/mariadb/init.d:/docker-entrypoint-initdb.d
+        environment:
+            - MYSQL_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+            - MYSQL_DATABASE=${MARIADB_DB}
+            - MYSQL_USER=${MARIADB_USER}
+            - MYSQL_PASSWORD=${MARIADB_PASSWORD}
+        networks:
+            - local_network
+
+    # Container do ELASTICSEARCH ✔
+    elasticsearch:
+        container_name: ${COMPANY_NAME}_elasticsearch
+        build:
+            context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/elasticsearch/
+            args:
+                ELK_VERSION: ${ELK_VERSION}
+        volumes:
+            - elasticsearch:/usr/share/elasticsearch/data
+            - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        environment:
+            ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+            ELASTIC_PASSWORD: secret
+            discovery.type: single-node
+        networks:
+            - local_network
+
+    # Container do KIBANA ✔
+    kibana:
+        container_name: ${COMPANY_NAME}_kibana
+        build:
+            context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/kibana/
+            args:
+                ELK_VERSION: ${ELK_VERSION}
+        volumes:
+            - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+        ports:
+            - "5601:5601"
+        environment:
+            ELASTICSEARCH_URL: https://localhost:9200
+            ELASTICSEARCH_HOSTS: https://localhost:9200
+            xpack.security.enabled: 'false'
+            xpack.monitoring.enabled: 'false'
+            xpack.watcher.enabled: 'false'
+            xpack.ml.enabled: 'false'
+        networks:
+            - local_network
+        depends_on:
+            - elasticsearch
+
+    # Container do LOGSTASH ✔
+    logstash:
+        container_name: ${COMPANY_NAME}_logstash
+        build:
+            context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/
+            args:
+                ELK_VERSION: ${ELK_VERSION}
+        volumes:
+            - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+            - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/pipeline:/usr/share/logstash/pipeline
+        ports:
+            - "5000:5000/tcp"
+            - "5000:5000/udp"
+            - "9600:9600"
+        environment:
+            LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+        networks:
+            - local_network
+        depends_on:
+            - elasticsearch        
+
+# Rede Local ✔
+networks:
+    local_network:
+        driver: ${DOCKER_NETWORKS_DRIVER}
+
+# Volumes do Docker Local ✔
+volumes:
+    mariadb:
+        driver: ${DOCKER_VOLUMES_DRIVER}
+    elasticsearch:
+        driver: ${DOCKER_VOLUMES_DRIVER}
