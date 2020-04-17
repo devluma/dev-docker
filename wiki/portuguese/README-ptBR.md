@@ -162,7 +162,7 @@ docker volume rm -f $(docker volume ls -q)
 docker network rm $(docker network ls -q)
 
 # Docker Compose Up Containers
-docker-compose up -d --build nginx php redis postgresql mariadb mongodb
+docker-compose up -d --build nginx php nodejs redis postgresql mariadb mongodb
 ```
 
 ## Lista de Pacotes Finalizados
