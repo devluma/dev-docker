@@ -1,3 +1,4 @@
+# Stack General Packages All Databases
 version: '3.7'
 
 services:
@@ -47,6 +48,26 @@ services:
             - ${DOCKER_HTDOCS_DIR}/${API_NAME}:/var/www/html/api
         links:
             - redis
+        networks:
+            - local_network
+
+    # Container NodeJS ✔
+    nodejs:
+        container_name: ${COMPANY_NAME}_nodejs
+        hostname: nodejs
+        build:
+            context: ${DOCKER_BUILDS_DIR}/nodejs/
+            args:
+                - NODEJS_VERSION=${NODEJS_VERSION}
+        ports:
+            - "${NODEJS_PORT}:3000"
+        expose:
+            - "${NODEJS_PORT}"     
+        volumes:
+            - ${DOCKER_STORAGE_DIR}/logs/nodejs:/var/log/php
+            - ${DOCKER_HTDOCS_DIR}/${API_NAME}:/var/www/html/api
+        links:
+            - mongodb
         networks:
             - local_network
 
@@ -136,63 +157,69 @@ services:
         networks:
             - local_network
 
-    # Container do ELASTICSEARCH ✘
-    # elasticsearch:
-    #     container_name: ${COMPANY_NAME}_elasticsearch
-    #     build:
-    #         context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/elasticsearch/
-    #         args:
-    #             ELK_VERSION: ${ELK_VERSION}
-    #     volumes:
-    #         # - ${DOCKER_STORAGE_DIR}/data/elasticsearch:/usr/share/elasticsearch/data
-    #         - elasticsearch:/usr/share/elasticsearch/data
-    #         - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-    #     ports:
-    #         - "9200:9200"
-    #         - "9300:9300"
-    #     environment:
-    #         ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-    #         ELASTIC_PASSWORD: secret
-    #         discovery.type: single-node
-    #     networks:
-    #         - local_network
+    # Container do ELASTICSEARCH ✔
+    elasticsearch:
+        container_name: ${COMPANY_NAME}_elasticsearch
+        build:
+            context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/elasticsearch/
+            args:
+                ELK_VERSION: ${ELK_VERSION}
+        volumes:
+            - elasticsearch:/usr/share/elasticsearch/data
+            - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        environment:
+            ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+            ELASTIC_PASSWORD: secret
+            discovery.type: single-node
+        networks:
+            - local_network
 
-    # Container do KIBANA ✘
-    # kibana:
-    #     container_name: ${COMPANY_NAME}_kibana
-    #     build:
-    #         context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/kibana/
-    #         args:
-    #             ELK_VERSION: ${ELK_VERSION}
-    #     volumes:
-    #         - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
-    #     ports:
-    #         - "5601:5601"
-    #     networks:
-    #         - local_network
-    #     depends_on:
-    #         - elasticsearch
+    # Container do KIBANA ✔
+    kibana:
+        container_name: ${COMPANY_NAME}_kibana
+        build:
+            context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/kibana/
+            args:
+                ELK_VERSION: ${ELK_VERSION}
+        volumes:
+            - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+        ports:
+            - "5601:5601"
+        environment:
+            ELASTICSEARCH_URL: https://localhost:9200
+            ELASTICSEARCH_HOSTS: https://localhost:9200
+            xpack.security.enabled: 'false'
+            xpack.monitoring.enabled: 'false'
+            xpack.watcher.enabled: 'false'
+            xpack.ml.enabled: 'false'
+        networks:
+            - local_network
+        depends_on:
+            - elasticsearch
 
-    # Container do LOGSTASH ✘
-    # logstash:
-    #     container_name: ${COMPANY_NAME}_logstash
-    #     build:
-    #         context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/
-    #         args:
-    #             ELK_VERSION: ${ELK_VERSION}
-    #     volumes:
-    #         - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
-    #         - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/pipeline:/usr/share/logstash/pipeline
-    #     ports:
-    #         - "5000:5000/tcp"
-    #         - "5000:5000/udp"
-    #         - "9600:9600"
-    #     environment:
-    #         LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-    #     networks:
-    #         - local_network
-    #     depends_on:
-    #         - elasticsearch        
+    # Container do LOGSTASH ✔
+    logstash:
+        container_name: ${COMPANY_NAME}_logstash
+        build:
+            context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/
+            args:
+                ELK_VERSION: ${ELK_VERSION}
+        volumes:
+            - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+            - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/pipeline:/usr/share/logstash/pipeline
+        ports:
+            - "5000:5000/tcp"
+            - "5000:5000/udp"
+            - "9600:9600"
+        environment:
+            LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+        networks:
+            - local_network
+        depends_on:
+            - elasticsearch        
 
 # Rede Local ✔
 networks:
