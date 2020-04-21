@@ -1,10 +1,12 @@
 ARG PHP_FPM_VERSION=7.4-fpm
-ARG PHP_FPM_ENV
+ARG PHP_FPM_ENV=development
 ARG PHP_FPM_PORT=9000
 
 FROM php:${PHP_FPM_VERSION} as php
 
 LABEL Sysdomotic <sysdomotic@gmail.com>
+
+WORKDIR /var/www/html/api
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -42,8 +44,6 @@ RUN find /var/www/html -type f -exec chmod u+rw,g+rw,o+r {} +
 # Environment
 ENV PHP_ENV=${PHP_FPM_ENV}
 ENV PORT=${PHP_FPM_PORT}
-
-WORKDIR /var/www/html/api
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 
