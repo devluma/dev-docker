@@ -1,16 +1,34 @@
 #!/bin/bash
 
+# Clean containers
+clean_containers()
+{
+    echo -e "Limpando os containers do docker \n"
+    set -e
+    # set -- docker container rm -f $(docker container ls -a -q) "$@"
+    # set -- docker image rm -f $(docker image ls -a -q) "$@"
+    # set -- docker volume rm -f $(docker volume ls -q) "$@"
+    # set -- docker network rm $(docker network ls -q) "$@"
+
+    set -- docker-compose down -v --rmi local "$@"
+    exec "$@"
+}
+
+# Sobre os containers usando o docker-compose
+up_containers()
+{
+    echo -e "Subindo os containers do docker \n"
+    set -e
+    # set -- docker-compose up -d --build nginx php nodejs reactjs redis postgresql mariadb mongodb elasticsearch kibana logstash "$@"
+    set -- docker-compose up -d --build reactjs redis postgresql "$@"
+    exec "$@"
+}
+
 # TODO 
 # Implementar comandos para facilicar o uso do docker-composer
 
+# clean_containers
+up_containers
+
 # docker-compose-run create nodejs reactjs mongodb
 # docker-compose-run down all
-  
-docker container rm -f $(docker container ls -a -q)      
-docker image rm -f $(docker image ls -a -q)      
-docker volume rm -f $(docker volume ls -q)   
-docker network rm $(docker network ls -q)
-
-# docker-compose up -d --build nginx php nodejs redis postgresql mariadb mongodb
-
-# docker-compose up -d --build nodejs mongodb
