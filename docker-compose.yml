@@ -14,6 +14,7 @@ services:
                 - NGINX_API_PORT=${NGINX_HOST_HTTP_API_PORT}
                 - NGINX_HOST_APP_NAME=${APP_NAME}
                 - NGINX_HOST_API_NAME=${API_NAME}
+            dockerfile: Dockerfile
         volumes:
             - ${DOCKER_HTDOCS_DIR}/${APP_NAME}:/var/www/html/app
             - ${DOCKER_HTDOCS_DIR}/${API_NAME}:/var/www/html/api
@@ -26,7 +27,7 @@ services:
             - "${NGINX_HOST_HTTP_API_PORT}:8082"
         links:
             - php
-            - redis
+            - nodejs
         networks:
             - local_network
 
@@ -39,6 +40,7 @@ services:
             args:
                 - PHP_FPM_VERSION=${PHP_FPM_VERSION}
                 - PHP_FPM_ENV=${APPLICATION_ENV}
+            dockerfile: Dockerfile
         ports:
             - "${PHP_FPM_PORT}:9000"
         expose:
@@ -46,6 +48,9 @@ services:
         volumes:
             - ${DOCKER_STORAGE_DIR}/logs/php-fpm:/var/log/php
             - ${DOCKER_HTDOCS_DIR}/${API_NAME}:/var/www/html/api
+        environment:
+            - PHP_ENV=${APPLICATION_ENV}
+            - PORT=9000
         links:
             - redis
         networks:
@@ -59,17 +64,42 @@ services:
             context: ${DOCKER_BUILDS_DIR}/nodejs/
             args:
                 - NODEJS_VERSION=${NODEJS_VERSION}
+                - NODEJS_ENV=${APPLICATION_ENV}
+            dockerfile: Dockerfile
         ports:
             - "${NODEJS_PORT}:3000"
         expose:
             - "${NODEJS_PORT}"     
         volumes:
-            - ${DOCKER_STORAGE_DIR}/logs/nodejs:/var/log/php
+            - ${DOCKER_STORAGE_DIR}/logs/nodejs:/var/log/node
+            - ${DOCKER_BUILDS_DIR}/nodejs/server:/var/www/html/server
             - ${DOCKER_HTDOCS_DIR}/${API_NAME}:/var/www/html/api
+        environment:
+            - NODE_ENV=${APPLICATION_ENV}
+            - PORT=3000
         links:
             - mongodb
         networks:
             - local_network
+
+    # Container ReactJS ✔
+    reactjs:
+        container_name: ${COMPANY_NAME}_reactjs
+        hostname: reactjs
+        build:
+            context: ${DOCKER_BUILDS_DIR}/reactjs/
+            args:
+                - NODEJS_VERSION=${NODEJS_VERSION}
+            dockerfile: Dockerfile
+        ports:
+            - "${REACTJS_PORT}:3001"
+        volumes:
+            - "${DOCKER_HTDOCS_DIR}/${APP_NAME}:/app"
+            - "/app/node_modules"
+        environment:
+            - NODE_ENV=development
+            - PORT=3001
+            - CHOKIDAR_USEPOLLING=true
 
     # Container REDIS ✔
     redis:
@@ -164,6 +194,7 @@ services:
             context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/elasticsearch/
             args:
                 ELK_VERSION: ${ELK_VERSION}
+            dockerfile: Dockerfile
         volumes:
             - elasticsearch:/usr/share/elasticsearch/data
             - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
@@ -184,6 +215,7 @@ services:
             context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/kibana/
             args:
                 ELK_VERSION: ${ELK_VERSION}
+            dockerfile: Dockerfile
         volumes:
             - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
         ports:
@@ -207,6 +239,7 @@ services:
             context: ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/
             args:
                 ELK_VERSION: ${ELK_VERSION}
+            dockerfile: Dockerfile
         volumes:
             - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
             - ${DOCKER_BUNDLES_DIR}/${ELK_BUNDLE_DIR}/logstash/pipeline:/usr/share/logstash/pipeline
