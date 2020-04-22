@@ -1,5 +1,5 @@
 {
-  "name": "node.server",
+  "name": "node-server",
   "version": "1.0.0",
   "description": "Node Server Example",
   "main": "server.js",

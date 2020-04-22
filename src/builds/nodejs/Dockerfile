@@ -1,4 +1,4 @@
-ARG NODEJS_VERSION=12.16
+ARG NODEJS_VERSION=alpine
 ARG NODEJS_ENV=development
 ARG NODEJS_PORT=3000
 
@@ -26,7 +26,7 @@ COPY ./docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 # Run npm packages
 # RUN npm init -y
 # RUN npm install
-# RUN npm install nodemon -g
+# RUN npm install -g nodemon
 
 # Run yarn packages
 RUN yarn init -y
