@@ -11,7 +11,7 @@ DOCKER_HTDOCS_DIR=./htdocs
 DOCKER_VOLUMES_DRIVER=local
 DOCKER_NETWORKS_DRIVER=bridge
 DOCKER_STACKS_DIR=./stacks
-DOCKER_STACK_CONFIG=nodejs,reactjs,redis,postgresql
+DOCKER_STACK_CONFIG=nodejs-reactjs-mongodb
 
 #------------------------#
 # Variáveis da Aplicação #
@@ -46,26 +46,23 @@ PHP_FPM_PORT=9000
 #--------#
 # NODEJS #
 #--------#
-NODEJS_VERSION=
-NODEJS_PORT=3001
+NODEJS_VERSION=12.16
+NODEJS_PORT=3000
 
 #---------#
 # REACTJS #
 #---------#
-REACTJS_VERSION=
-REACTJS_PORT=9001
-
-#-------#
-# VUEJS #
-#-------#
-VUEJS_VERSION=
-VUEJS_PORT=8001
+REACTJS_PORT=3001
 
 #-----------#
 # ANGULARJS #
 #-----------#
-ANGULARJS_VERSION=
-ANGULARJS_PORT=4201
+ANGULARJS_PORT=3002
+
+#-------#
+# VUEJS #
+#-------#
+VUEJS_PORT=3003
 
 #-------#
 # REDIS #
