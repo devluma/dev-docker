@@ -12,6 +12,15 @@ LABEL Sysdomotic <sysdomotic@gmail.com>
 
 WORKDIR /var/www/html
 
+# Add nginx dinamic configurations
+ADD sites-available/ /etc/nginx/sites-enabled/
+COPY sites-available/*.conf /etc/nginx/sites-enabled/*.conf
+
+# Copy nginx.conf
+COPY ./configs/nginx.conf /etc/nginx/nginx.conf
+
+# RUN ln -s /etc/nginx/sites-available/example.com.conf /etc/nginx/sites-enabled/example.com.conf
+
 ENV HOST_APP_NAME=${NGINX_HOST_APP_NAME} 
 ENV HOST_API_NAME=${NGINX_HOST_API_NAME}
 
