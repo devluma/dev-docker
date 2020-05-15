@@ -7,9 +7,11 @@ Mais detalhes sobre o projeto veja na [Documentação][wiki].
 
 ## Introdução
 
-O projeto foi criado para auxiliar na criação de ambientes dos projetos realizados pela [Sysdomotic](https://www.sysdomotic.com.br).
+Este projeto tem como base dois projetos muito bons para a criação de ambientes utilizando o `Docker` que são o projeto [laradocker.com](https://www.laradocker.com/) e o [laradock.io](https://laradock.io/).
 
-Este projeto visa o auxílio na criação de ambientes para o desenvolvimento de aplicações `WEB` e `API` que ajuda muito na hora de iniciar um novo freela ou até mesmo dar início naquele projeto pessoal :stuck_out_tongue_winking_eye:.
+Este projeto foi criado com o propósito de auxiliar a equipe de desenvolvimento na criação dos ambientes de cada projeto realizado pela [Sysdomotic](https://www.sysdomotic.com.br).
+
+O projeto visa o auxílio na criação de ambientes para o desenvolvimento de aplicações `WEB` e `API` que ajuda muito na hora de iniciar um novo freela ou até mesmo dar início naquele projeto pessoal :stuck_out_tongue_winking_eye:.
 
 O respositório foi estruturado da seguinte maneira:
 
