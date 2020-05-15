@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# TODO
+# Implementar comandos para facilicar a execução de comandos do docker-compose em ambiente de desenvolvimento
+
+# sh docker-compose-run create nodejs reactjs mongodb --project-name=my-project --htdocs-dir=./../
+# sh docker-compose-run clean --all
+# sh docker-compose-run clean --local
+
+docker-compose up -d --build nginx php nodejs redis postgresql
