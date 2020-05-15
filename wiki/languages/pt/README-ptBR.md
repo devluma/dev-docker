@@ -2,7 +2,7 @@
 
 > Tradução para Português do Brasil.
 
-Documentação criada para facilitar a infraestrutura de projetos DevOps da Sysdomotic trabalhando com base nos mais váriados projetos. 
+Documentação criada para facilitar a infraestrutura de projetos DevOps da Sysdomotic trabalhando com base nos mais váriados projetos.
 O repositório contém uma estrutura padrão para a criação de projetos utilizando containers do [Docker](https://www.docker.com/get-started) e [Docker Compose](https://docs.docker.com/compose/) para criação de ambientes de desenvolvimento, o projeto não foi testado em ambiente de produção utilizando totalmente o Docker em produção.
 
 > Se quiser contribuir faça um `FORK` do projeto ou crie uma `FEATURE` e nos ajude a implementar :blush:
@@ -17,15 +17,15 @@ O repositório contém uma estrutura padrão para a criação de projetos utiliz
 | [Contribuições](#contribuições)                         | Como contribuir com o projeto.                                  |
 | [Licença](#licença)                                     | Termos e licenças do projeto.                                   |
 
-| Legenda | Descrição                                |
-| :-----: | :--------------------------------------- |
-|    💥   | São configurações da máquina local.     |
-|    🚀   | São configurações do servidor de cloud. |
-|    ⛔   | Será nescessário dar permissão.         |
+| Legenda | Descrição                               |
+| :-----: | :-------------------------------------- |
+|    💥    | São configurações da máquina local.     |
+|    🚀    | São configurações do servidor de cloud. |
+|    ⛔    | Será nescessário dar permissão.         |
 |    ✔    | È nescessário instalar.                 |
 |    ✘    | Não é nescessário instalar.             |
 |    ☂    | Pode ser instalado independente.        |
-|    📌   | È um Submódulo do GIT.                  |
+|    📌    | È um Submódulo do GIT.                  |
 
 ## Arquitetura de Diretórios
 
@@ -95,13 +95,13 @@ Para executar o docker para este projeto, você precisa seguir as seguintes etap
 
 + Configurações do **`VHOSTS`** no **`WINDOWS`**: ✔ 💥 ⛔
      * Adicione os hosts e configurações no **`Virtualbox`** instalado:
-     
+
          ![Screenshot](https://github.com/devluma/dev-docker/blob/master/wiki/images/docker-virtualbox-conf-windows.png)
 
      * Adicionar os domínios no arquivo de **`HOSTS`** localizado no diretório: **`C:\Windows\System32\drivers\etc`**
-     
+
          ![Screenshot](https://github.com/devluma/dev-docker/blob/master/wiki/images/docker-hosts-windows.png)
-         
+
 + Configurações do **`VHOSTS`** no **`LINUX`**: ✔ 💥 ⛔
       * `TODO` ~~Precisa configurar o arquivo de **`HOSTS`**~~
 
@@ -131,7 +131,7 @@ Para executar o docker para este projeto, você precisa seguir as seguintes etap
 Lista de comandos em shell script para ajudar o desenvolvedor com os projetos utilizando o docker-compose.
 
 ```bash
-# Script Run Docker Compose: 
+# Script Run Docker Compose:
 docker-compose-run create nodejs reactjs mongodb
 docker-compose-run down --all
 
@@ -149,16 +149,16 @@ sh bin/exec.sh bash docker_reactjs yarn install
 sh bin/build.sh build --dir=dist
 sh bin/build.sh send aws --user=teste --password=teste
 
-# Docker Containers:  
+# Docker Containers:
 docker container rm -f $(docker container ls -a -q)
- 
-# Docker Imagens :      
+
+# Docker Imagens :
 docker image rm -f $(docker image ls -a -q)
- 
-# Docker Volumes :      
+
+# Docker Volumes :
 docker volume rm -f $(docker volume ls -q)
- 
-# Docker Networks :    
+
+# Docker Networks :
 docker network rm $(docker network ls -q)
 
 # Docker Compose Up Containers
@@ -181,11 +181,11 @@ docker-compose up -d --build nginx php nodejs redis postgresql mariadb mongodb
 #### Stacks com PHP/LARAVEL:
 - [x] **Stack Laravel** com `nginx`, `php-fpm`, e `stack-database`
 - [ ] **Stack Laravel/ReactJS** com `nginx`, `php-fpm`, `reactjs`, `stack-database` e/ou `stack-search-engine`
-- [ ] **Stack Laravel/AngularJS** com `nginx`, `php-fpm`, `angularjs`, `stack-database` e/ou `stack-search-engine`
+- [x] **Stack Laravel/AngularJS** com `nginx`, `php-fpm`, `angularjs`, `stack-database` e/ou `stack-search-engine`
 - [ ] **Stack Laravel/VueJS** com `nginx`, `php-fpm`, `vuejs`, `stack-database` e/ou `stack-search-engine`
 
 #### Stacks com NODEJS:
-- [ ] **Stack NodeJS/ReactJS** com `nginx`, `nodejs`, `reactjs`, `stack-database` e/ou `stack-search-engine`
+- [x] **Stack NodeJS/ReactJS** com `nginx`, `nodejs`, `reactjs`, `stack-database` e/ou `stack-search-engine`
 - [ ] **Stack NodeJS/AngularJS** com `nginx`, `nodejs`, `angularjs`, `stack-database` e/ou `stack-search-engine`
 - [ ] **Stack NodeJS/VueJS** com `nginx`, `nodejs`, `vuejs`, `stack-database` e/ou `stack-search-engine`
 

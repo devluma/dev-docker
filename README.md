@@ -57,7 +57,7 @@ O projeto é [MIT](https://choosealicense.com/licenses/mit/)
 [travis-github-url]: https://travis-ci.org/github/devluma/dev-docker
 [travis-bitbucket-url]: https://travis-ci.org/bitbucket/sysdomoticbr/docker
 [wiki]: https://github.com/devluma/dev-docker/tree/master/wiki
-[wiki-dirs]: https://github.com/devluma/dev-docker/blob/master/wiki/portuguese/README-ptBR.md#arquitetura-de-diret%C3%B3rios
-[wiki-tsl-ptBR]: https://github.com/devluma/dev-docker/blob/master/wiki/portuguese/README-ptBR.md
-[wiki-tsl-en]: https://github.com/devluma/dev-docker/blob/master/wiki/english/README-en.md
-[wiki-tsl-es]: https://github.com/devluma/dev-docker/blob/master/wiki/spanish/README-es.md
+[wiki-dirs]: https://github.com/devluma/dev-docker/blob/master/wiki/languages/pt/README-ptBR.md#arquitetura-de-diret%C3%B3rios
+[wiki-tsl-ptBR]: https://github.com/devluma/dev-docker/blob/master/wiki/languages/pt/README-ptBR.md
+[wiki-tsl-en]: https://github.com/devluma/dev-docker/blob/master/wiki/languages/en/README-en.md
+[wiki-tsl-es]: https://github.com/devluma/dev-docker/blob/master/wiki/languages/es/README-es.md
