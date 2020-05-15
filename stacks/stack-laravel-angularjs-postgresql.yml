@@ -1,8 +1,7 @@
 # Stack Laravel/AngularJS with PostgresSQL
-version: '3.7'
+version: "3.7"
 
 services:
-
     # Container NGINX ✔
     nginx:
         container_name: ${COMPANY_NAME}_nginx
@@ -42,7 +41,7 @@ services:
         ports:
             - "${PHP_FPM_PORT}:9000"
         expose:
-            - "${PHP_FPM_PORT}"     
+            - "${PHP_FPM_PORT}"
         volumes:
             - ${DOCKER_STORAGE_DIR}/logs/php-fpm:/var/log/php
             - ${DOCKER_HTDOCS_DIR}/${API_NAME}:/var/www/html/api
@@ -56,7 +55,7 @@ services:
         container_name: ${COMPANY_NAME}_postgresql
         build:
             context: ${DOCKER_BUILDS_DIR}/postgresql
-            args: 
+            args:
                 - POSTGRES_VERSION=${POSTGRES_VERSION}
             dockerfile: Dockerfile
         ports:

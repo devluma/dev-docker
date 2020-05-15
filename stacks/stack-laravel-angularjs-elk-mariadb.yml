@@ -1,8 +1,7 @@
 # Stack Laravel/AngularJS with MariaDB
-version: '3.7'
+version: "3.7"
 
 services:
-
     # Container NGINX ✔
     nginx:
         container_name: ${COMPANY_NAME}_nginx
@@ -42,7 +41,7 @@ services:
         ports:
             - "${PHP_FPM_PORT}:9000"
         expose:
-            - "${PHP_FPM_PORT}"     
+            - "${PHP_FPM_PORT}"
         volumes:
             - ${DOCKER_STORAGE_DIR}/logs/php-fpm:/var/log/php
             - ${DOCKER_HTDOCS_DIR}/${API_NAME}:/var/www/html/api
@@ -56,7 +55,7 @@ services:
         container_name: ${COMPANY_NAME}_mariadb
         build:
             context: ${DOCKER_BUILDS_DIR}/mariadb
-            args: 
+            args:
                 - MARIADB_VERSION=${MARIADB_VERSION}
             dockerfile: Dockerfile
         ports:
@@ -110,10 +109,10 @@ services:
         environment:
             ELASTICSEARCH_URL: https://localhost:9200
             ELASTICSEARCH_HOSTS: https://localhost:9200
-            xpack.security.enabled: 'false'
-            xpack.monitoring.enabled: 'false'
-            xpack.watcher.enabled: 'false'
-            xpack.ml.enabled: 'false'
+            xpack.security.enabled: "false"
+            xpack.monitoring.enabled: "false"
+            xpack.watcher.enabled: "false"
+            xpack.ml.enabled: "false"
         networks:
             - local_network
         depends_on:
@@ -138,7 +137,7 @@ services:
         networks:
             - local_network
         depends_on:
-            - elasticsearch        
+            - elasticsearch
 
 # Rede Local ✔
 networks:
