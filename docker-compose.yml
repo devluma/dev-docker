@@ -1,8 +1,25 @@
 # Stack General Packages All Databases
-version: '3.7'
+version: "3.7"
+
+# Rede Local ✔
+networks:
+    local_network:
+        driver: ${DOCKER_NETWORKS_DRIVER}
+
+# Volumes do Docker Local ✔
+volumes:
+    mongodb:
+        driver: ${DOCKER_VOLUMES_DRIVER}
+    mariadb:
+        driver: ${DOCKER_VOLUMES_DRIVER}
+    postgresql:
+        driver: ${DOCKER_VOLUMES_DRIVER}
+    redis:
+        driver: ${DOCKER_VOLUMES_DRIVER}
+    elasticsearch:
+        driver: ${DOCKER_VOLUMES_DRIVER}
 
 services:
-
     # Container NGINX ✔
     nginx:
         container_name: ${COMPANY_NAME}_nginx
@@ -44,7 +61,7 @@ services:
         ports:
             - "${PHP_FPM_PORT}:9000"
         expose:
-            - "${PHP_FPM_PORT}"     
+            - "${PHP_FPM_PORT}"
         volumes:
             - ${DOCKER_STORAGE_DIR}/logs/php-fpm:/var/log/php
             - ${DOCKER_HTDOCS_DIR}/${API_NAME}:/var/www/html/api
@@ -69,7 +86,7 @@ services:
         ports:
             - "${NODEJS_PORT}:3000"
         expose:
-            - "${NODEJS_PORT}"     
+            - "${NODEJS_PORT}"
         volumes:
             - ${DOCKER_STORAGE_DIR}/logs/nodejs:/var/log/node
             - ${DOCKER_BUILDS_DIR}/nodejs/server:/var/www/html/server
@@ -106,7 +123,7 @@ services:
         container_name: ${COMPANY_NAME}_redis
         build:
             context: ${DOCKER_BUILDS_DIR}/redis/
-            args: 
+            args:
                 - REDIS_VERSION=${REDIS_VERSION}
             dockerfile: Dockerfile
         ports:
@@ -123,7 +140,7 @@ services:
         container_name: ${COMPANY_NAME}_postgresql
         build:
             context: ${DOCKER_BUILDS_DIR}/postgresql
-            args: 
+            args:
                 - POSTGRES_VERSION=${POSTGRES_VERSION}
             dockerfile: Dockerfile
         ports:
@@ -135,7 +152,7 @@ services:
             - ${DOCKER_HTDOCS_DIR}/${API_NAME}/database/migrations:/home/db/migrations
             - ${DOCKER_BUILDS_DIR}/postgresql/init.d:/docker-entrypoint-initdb.d
         environment:
-            - POSTGRES_DB=${POSTGRES_DB}
+            - POSTGRES_DB=${POSTGRES_DB}_${APPLICATION_ENV}
             - POSTGRES_USER=${POSTGRES_USER}
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
         networks:
@@ -146,7 +163,7 @@ services:
         container_name: ${COMPANY_NAME}_mariadb
         build:
             context: ${DOCKER_BUILDS_DIR}/mariadb
-            args: 
+            args:
                 - MARIADB_VERSION=${MARIADB_VERSION}
             dockerfile: Dockerfile
         ports:
@@ -160,7 +177,7 @@ services:
             - ${DOCKER_BUILDS_DIR}/mariadb/init.d:/docker-entrypoint-initdb.d
         environment:
             - MYSQL_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
-            - MYSQL_DATABASE=${MARIADB_DB}
+            - MYSQL_DATABASE=${MARIADB_DB}_${APPLICATION_ENV}
             - MYSQL_USER=${MARIADB_USER}
             - MYSQL_PASSWORD=${MARIADB_PASSWORD}
         networks:
@@ -171,7 +188,7 @@ services:
         container_name: ${COMPANY_NAME}_mongodb
         build:
             context: ${DOCKER_BUILDS_DIR}/mongodb
-            args: 
+            args:
                 - MONGODB_VERSION=${MONGODB_VERSION}
             dockerfile: Dockerfile
         ports:
@@ -183,7 +200,7 @@ services:
         environment:
             - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
             - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
-            - MONGO_INITDB_DATABASE=${MONGODB_DB}
+            - MONGO_INITDB_DATABASE=${MONGODB_DB}_${APPLICATION_ENV}
         networks:
             - local_network
 
@@ -223,10 +240,10 @@ services:
         environment:
             ELASTICSEARCH_URL: https://localhost:9200
             ELASTICSEARCH_HOSTS: https://localhost:9200
-            xpack.security.enabled: 'false'
-            xpack.monitoring.enabled: 'false'
-            xpack.watcher.enabled: 'false'
-            xpack.ml.enabled: 'false'
+            xpack.security.enabled: "false"
+            xpack.monitoring.enabled: "false"
+            xpack.watcher.enabled: "false"
+            xpack.ml.enabled: "false"
         networks:
             - local_network
         depends_on:
@@ -252,22 +269,4 @@ services:
         networks:
             - local_network
         depends_on:
-            - elasticsearch        
-
-# Rede Local ✔
-networks:
-    local_network:
-        driver: ${DOCKER_NETWORKS_DRIVER}
-
-# Volumes do Docker Local ✔
-volumes:
-    mongodb:
-        driver: ${DOCKER_VOLUMES_DRIVER}
-    mariadb:
-        driver: ${DOCKER_VOLUMES_DRIVER}
-    postgresql:
-        driver: ${DOCKER_VOLUMES_DRIVER}
-    redis:
-        driver: ${DOCKER_VOLUMES_DRIVER}
-    elasticsearch:
-        driver: ${DOCKER_VOLUMES_DRIVER}
+            - elasticsearch
